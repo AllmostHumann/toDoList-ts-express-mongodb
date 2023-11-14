@@ -4,11 +4,11 @@ import useTasksStore from '../../utils/taskStore';
 export const ExampleTasksButton = () => {
   const store = useTasksStore();
   const loading = store.loading;
-  const exampleTasks = store.exampleTasks;
+  const getExampleTasks = store.getExampleTasks;
 
   return (
     <Button
-      onClick={() => exampleTasks()}
+      onClick={() => getExampleTasks()}
       disabled={loading}
     >
       {loading ? 'Loading...' : 'Get example tasks'}
