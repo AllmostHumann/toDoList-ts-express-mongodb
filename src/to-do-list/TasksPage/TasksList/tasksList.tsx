@@ -6,14 +6,9 @@ import { toTask } from '../../../routers';
 import classNames from 'classnames';
 import { DoneButton } from '../../../components/Buttons/doneButton';
 import { DeleteButton } from '../../../components/Buttons/deleteButton';
+import { Content } from '../../../components/Content/content';
 
-interface TaskListContent {
-  hidden?: boolean;
-}
-
-export const TasksList: React.FC<TaskListContent> = ({
-  hidden,
-}) => {
+export const TasksList = () => {
   const store = useTasksStore();
   const location = useLocation();
   const query = new URLSearchParams(location.search).get(
@@ -32,18 +27,21 @@ export const TasksList: React.FC<TaskListContent> = ({
           className={classNames({
             'border-b-[1px] border-solid border-alto p-[5px] grid grid-cols-3 items-center gap-[10px]':
               true,
-            hidden,
+            'hidden': task.done && hideDone,
           })}
           key={task.id}
-          hidden={task.done && hideDone}
         >
-          <DoneButton onClick={() => toggleTaskDone}>
+          <DoneButton
+            onClick={() => toggleTaskDone(task.id)}
+          >
             {task.done ? '✔' : ''}
           </DoneButton>
-          <NavLink to={toTask({ id: task.id })}>
-            {task.content}
-          </NavLink>
-          <DeleteButton onClick={() => removeTask}>
+          <Content done={task.done}>
+            <NavLink to={toTask({ id: task.id })}>
+              {task.content}
+            </NavLink>
+          </Content>
+          <DeleteButton onClick={() => removeTask(task.id)}>
             🗑
           </DeleteButton>
         </li>
