@@ -3,24 +3,24 @@ import { Button } from './button';
 
 export const TaskButtons = () => {
   const store = useTasksStore();
-  const areAllTasksEmpty = store.areAllTasksEmpty;
-  const areAllTaskDone = store.areAllTasksDone;
-  const setAllTaskDone = store.setAllDone;
+  const tasks = store.tasks;
+  const areTasksListEmpty = store.areTasksListEmpty(tasks);
+  const areAllTaskDone = store.areAllTasksDone(tasks);
+  const setAllTaskDone = store.setAllTasksDone;
   const setAllTaskHide = store.toggleHideDone;
   const hidden = store.hideDone;
 
+  console.log(setAllTaskDone);
+
   return (
     <div className='flex flex-wrap basis-auto m-[5px] justify-center'>
-      {!!areAllTasksEmpty && (
+      {!areTasksListEmpty && (
         <>
           <Button onClick={() => setAllTaskHide()}>
             {hidden ? 'Show' : 'Hide'} done
           </Button>
-          <Button
-            onClick={() => setAllTaskDone()}
-            disabled={!areAllTaskDone}
-          >
-            Mark all as done
+          <Button onClick={() => setAllTaskDone()}>
+            Mark all as {areAllTaskDone ? 'undone' : 'done'}
           </Button>
         </>
       )}
