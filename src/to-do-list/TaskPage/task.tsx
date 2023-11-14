@@ -7,9 +7,10 @@ import useTasksStore from '../../utils/taskStore';
 
 export const TaskPage = () => {
   const store = useTasksStore();
-  const { taskId } = useParams();
+  const { id } = useParams();
   const tasks = store.tasks;
-  const task = store.getTaskById(taskId, tasks);
+  const task = store.getTaskById(id, tasks);
+  console.log(id);
 
   return (
     <Container>
@@ -19,7 +20,7 @@ export const TaskPage = () => {
         body={
           task && (
             <div className='p-[20px] bg-white leading-normal mb-[10px] border-[1px] flex flex-wrap'>
-              <strong>Done:</strong>&nbspl;{' '}
+              <strong>Done:</strong>&nbsp;
               {task.done ? 'Yes' : 'No'}
             </div>
           )
