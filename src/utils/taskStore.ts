@@ -17,8 +17,6 @@ interface TasksState {
   tasks: Task[];
   hideDone: boolean;
   loading: boolean;
-  // allTasksDone: boolean;
-  // allTasksEmpty: boolean;
 }
 
 interface TasksStore extends TasksState {
