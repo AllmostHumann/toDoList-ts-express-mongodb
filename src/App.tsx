@@ -1,9 +1,4 @@
-import {
-  HashRouter,
-  Navigate,
-  Routes,
-  Route,
-} from 'react-router-dom';
+import { HashRouter, Navigate, Routes, Route } from 'react-router-dom';
 import { Nav } from './components/Navigation/nav';
 import { toTask, toTasks, toAutor } from './routers';
 import { TaskPage } from './to-do-list/TaskPage/task';
