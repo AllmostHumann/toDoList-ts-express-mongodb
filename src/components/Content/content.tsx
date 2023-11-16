@@ -5,10 +5,7 @@ interface ContentProps {
   done?: boolean;
 }
 
-export const Content: React.FC<ContentProps> = ({
-  children,
-  done,
-}) => {
+export const Content: React.FC<ContentProps> = ({ children, done }) => {
   return (
     <span
       className={classNames({

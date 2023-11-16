@@ -1,11 +1,12 @@
 import { NavLink } from 'react-router-dom';
 import { toTasks, toAutor } from '../../routers';
+import { ThemeButton } from '../Buttons/themeButton';
 
 export const Nav = () => {
   return (
     <nav>
-      <ul className='bg-teal m-0 p-0 flex justify-center list-none'>
-        <li className='m-[15px]'>
+      <div className='bg-teal dark:bg-sherpaBlue m-0 p-0 flex justify-center items-center list-none'>
+        <div className='m-[15px] bg-teal dark:bg-sherpaBlue'>
           <NavLink
             className={({ isActive }) =>
               isActive
@@ -16,8 +17,8 @@ export const Nav = () => {
           >
             Tasks
           </NavLink>
-        </li>
-        <li className='m-[15px]'>
+        </div>
+        <div className='m-[15px] bg-teal dark:bg-sherpaBlue'>
           <NavLink
             className={({ isActive }) =>
               isActive
@@ -28,8 +29,9 @@ export const Nav = () => {
           >
             About
           </NavLink>
-        </li>
-      </ul>
+        </div>
+        <ThemeButton />
+      </div>
     </nav>
   );
 };

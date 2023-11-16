@@ -2,10 +2,8 @@ import classNames from 'classnames';
 import useTasksStore from '../../utils/taskStore';
 
 interface DeleteButtonProps {
-  children: string;
-  onClick?: (
-    event: React.MouseEvent<HTMLButtonElement>,
-  ) => void;
+  children: string | React.ReactNode;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 export const DeleteButton: React.FC<DeleteButtonProps> = ({
@@ -18,9 +16,9 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
   return (
     <button
       className={classNames({
-        'text-white w-[25px] h-[25px] border-none cursor:pointer p-0 transition-none':
+        'w-[25px] h-[25px] border-none cursor:pointer p-0 transition-none':
           true,
-        'bg-red-600 hover:bg-sunsetOrange hover:border-[2px] hover:border-solid hover:border-black':
+        'bg-red-600 hover:bg-sunsetOrange hover:border-[1px] hover:border-solid hover:border-black dark:bg-red-900 text-white':
           task,
       })}
       onClick={onClick}

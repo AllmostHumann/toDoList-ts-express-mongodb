@@ -6,18 +6,34 @@
 
 @layer base {
   body {
-    background-color: theme('colors.alto');
-    font-family: theme('fontFamily.montserrat');
+    @apply bg-alto font-montserrat dark:bg-jet;
   }
-  h1 {
-    font-size: 32px;
-    font-weight: 700;
-  }
+
+  h1,
   h2 {
-    font-size: 32px;
-    font-weight: 700;
+    @apply text-[32px] font-bold dark:text-platinum;
+  }
+  main,
+  div {
+    @apply bg-alto;
+    @apply dark:bg-jet;
+  }
+  header,
+  form,
+  ul {
+    @apply bg-white dark:bg-davysGray rounded-[5px];
   }
   p {
-    margin: 16px auto;
+    @apply my-[16px] mx-auto;
+  }
+  input {
+    @apply dark:bg-gray-400 dark:placeholder:text-black font-semibold rounded-[5px];
+  }
+  button {
+    @apply rounded-[5px] text-teal dark:text-platinum bg-white
+    dark:bg-davysGray dark:placeholder:text-black font-semibold;
+  }
+  a {
+    @apply dark:text-platinum font-semibold decoration-black decoration-[2px];
   }
 }

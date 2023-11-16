@@ -1,8 +1,6 @@
 interface ButtonProps {
   children: string | string[];
-  onClick?: (
-    event: React.MouseEvent<HTMLButtonElement>,
-  ) => void;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   disabled?: boolean;
   loading?: boolean;
   className?: string;
@@ -16,8 +14,8 @@ export const Button: React.FC<ButtonProps> = ({
 }) => {
   return (
     <button
-      className='border-none bg-white text-teal md:my-0 
-      md:mx-[10px] p-0 transition duration-500 m-[7px] hover:underline hover:cursor-pointer disabled:text-silver'
+      className='border-none md:my-0 
+      md:mx-[10px] p-0 m-[7px] hover:underline hover:cursor-pointer disabled:text-silver'
       onClick={onClick}
       disabled={disabled}
     >

@@ -11,38 +11,36 @@ import { Content } from '../../../components/Content/content';
 export const TasksList = () => {
   const store = useTasksStore();
   const location = useLocation();
-  const query = new URLSearchParams(location.search).get(
-    searchQueryParamName,
-  );
+  const query = new URLSearchParams(location.search).get(searchQueryParamName);
   const task = store.tasks;
-  const tasks = store.selectTaskByQuery(query, task);
+  const tasks = store.getTaskByQuery(query, task);
   const hideDone = store.hideDone;
   const removeTask = store.removeTask;
   const toggleTaskDone = store.toggleTaskDone;
 
   return (
-    <ul className='p-[20px] m-auto bg-white'>
+    <ul className='p-[20px] m-auto'>
       {tasks.map((task) => (
         <li
           className={classNames({
-            'border-b-[1px] border-solid border-alto p-[5px] grid grid-cols-3 items-center gap-[10px]':
+            'border-b-[1px] border-solid border-alto p-[5px] grid grid-cols-3 items-center gap-[10px] dark:border-gray-400':
               true,
-            'hidden': task.done && hideDone,
+            hidden: task.done && hideDone,
           })}
           key={task.id}
         >
-          <DoneButton
-            onClick={() => toggleTaskDone(task.id)}
-          >
-            {task.done ? '✔' : ''}
+          <DoneButton onClick={() => toggleTaskDone(task.id)}>
+            <p className='m-auto translate-y-[1px] hover:translate-y-[-0.5px]'>
+              {task.done ? '✔' : '✔'}
+            </p>
           </DoneButton>
           <Content done={task.done}>
-            <NavLink to={toTask({ id: task.id })}>
-              {task.content}
-            </NavLink>
+            <NavLink to={toTask({ id: task.id })}>{task.content}</NavLink>
           </Content>
           <DeleteButton onClick={() => removeTask(task.id)}>
-            🗑
+            <p className='m-auto translate-y-[1px] hover:translate-y-[-0.5px]'>
+              X
+            </p>
           </DeleteButton>
         </li>
       ))}

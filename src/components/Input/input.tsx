@@ -10,10 +10,11 @@ interface InputProps {
 export const Input: React.FC<InputProps> = React.forwardRef<
   HTMLInputElement,
   InputProps
->(({ onChange, ref, placeholder }) => {
+>(({ onChange, placeholder, value }, inputRef) => {
   return (
     <input
-      ref={ref}
+      ref={inputRef}
+      value={value}
       placeholder={placeholder}
       onChange={onChange}
       className='border-solid border-[1px] p-[5px] border-silverChalice w-[100%]'

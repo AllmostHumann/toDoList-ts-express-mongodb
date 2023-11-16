@@ -10,12 +10,13 @@ export const Section: React.FC<SectionContent> = ({
   body,
 }) => {
   return (
-    <div className='mx-0 my-auto bg-white leading-normal'>
+    <div className='overflow-hidden rounded-[5px] mb-[10px] my-auto leading-normal'>
       <header
-        className='m-0 p-[20px] grid bg-white border-solid border-b-[1px] 
-      border-alto md:grid-cols-auto justify-between items-center grid-cols-1'
+        className='mb-[2px] p-[20px] grid border-solid 
+      border-alto md:grid-cols-auto justify-between items-center 
+      grid-cols-1'
       >
-        <h2 className='md:m-0 md:text-[25px] text-[20px] m-[3px]'>
+        <h2 className='md:m-0 md:text-[25px] text-[20px] m-[3px] bg-white dark:bg-davysGray'>
           {title}
         </h2>
         {extraHeaderContent}
