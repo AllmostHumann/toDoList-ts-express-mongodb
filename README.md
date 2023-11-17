@@ -1,8 +1,8 @@
 # Jakub Głuch - To do list in React.js + Vite
 
-![To do list Demo](public/gif/Animation.gif)
+![To do list](public/gif/Animation.gif)
 
-## Demo https://allmosthumann.github.io/todolist-ts-express-mongodb/
+## ![Demo](https://allmosthumann.github.io/todolist-ts-express-mongodb/)
 
 ## Introduction
 

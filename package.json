@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://allmosthumann.github.io/todo-list-react-ts-express-mongodb/",
+  "homepage": "https://github.com/AllmostHumann/todolist-ts-express-mongodb",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
