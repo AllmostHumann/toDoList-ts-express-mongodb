@@ -2,7 +2,7 @@
 
 ![To do list Demo](public/gif/Animation.gif)
 
-## Demo https://allmosthumann.github.io/todo-list-react/
+## Demo https://allmosthumann.github.io/todolist-ts-express-mongodb/
 
 ## Introduction
 
