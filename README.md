@@ -1,3 +1,36 @@
+# Jakub Głuch - To do list in React.js + Vite
+
+![To do list Demo](public/gif/Animation.gif)
+
+## Demo https://allmosthumann.github.io/todo-list-react/
+
+## Introduction
+
+In order to learn something new, I decided to rewrite my task list application to a TypeScript version. I used Vite as the builder. For styling, I used TailwindCSS. The main idea in this application was to add a server written in Express.js, and to use a MongoDB database, and to learn the Zustand library as a replacement for Redux. In addition, I made some changes to the look of the application, including adding the functionality to change the theme.
+
+Learning Zustand, Express.js, and MongoDB will allow me to start writing a blockchain video playback application (Mirrorboards LFG!) in the near future.
+
+Beyond that, it is still a simple task list application 😆.
+
+Cheers!
+
+## Description
+
+Simple MERN To do list in React.js with TypeScript, with mobile devices responsiveness.
+
+## Technologies
+
+- React.js
+- Vite
+- TypeScript
+- Zustand
+- TanStack Query 5
+- TailwindCSS
+- React-router
+- Axios
+- TBA Express.js
+- TBA MongoDB
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
