@@ -24,7 +24,7 @@ Simple MERN To do list in React.js with TypeScript, with mobile devices responsi
 - Vite
 - TypeScript
 - Zustand
-- TanStack Query 5
+- TBA TanStack Query 5
 - TailwindCSS
 - React-router
 - Axios
