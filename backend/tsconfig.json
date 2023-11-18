@@ -16,5 +16,8 @@
     "moduleDetection": "force",
     "isolatedModules": true
   },
+  "ts-node": {
+    "esm": true
+  },
   "include": ["src"]
 }
