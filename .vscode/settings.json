@@ -54,7 +54,7 @@
   "console-ninja.featureSet": "Community",
   "workbench.colorTheme": "One Dark Pro Darker",
   "editor.formatOnSave": true,
-  "prettier.configPath": "frontend/prettier.config.js",
+  "prettier.configPath": ".prettierrc",
   "eslint.timeBudget.onValidation": {
     "warn": 4000,
     "error": 8000
