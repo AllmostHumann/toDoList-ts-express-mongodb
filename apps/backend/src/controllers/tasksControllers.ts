@@ -1,21 +1,34 @@
 import { RequestHandler } from 'express';
 import TaskModel from '../models/taskModels.js';
 
-export const getTasks: RequestHandler = async (req, res, next) => {
-  try {
-    const tasks = await TaskModel.find().exec();
-    res.status(200).json(tasks);
-  } catch (error) {
-    next(error);
-  }
-};
-
-export const getTask: RequestHandler = async (req, res, next) => {
+export const getTaskById: RequestHandler = async (req, res, next) => {
   const taskId = req.params.taskId;
 
   try {
     const task = await TaskModel.findById(taskId).exec();
     res.status(200).json(task);
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const getTaskByContent: RequestHandler = async (req, res, next) => {
+  const taskContent = req.params.content;
+
+  try {
+    const task = taskContent
+      ? await TaskModel.find({ content: new RegExp(taskContent, 'i') }).exec()
+      : [];
+    res.status(200).json(task);
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const getTasks: RequestHandler = async (req, res, next) => {
+  try {
+    const tasks = await TaskModel.find().exec();
+    res.status(200).json(tasks);
   } catch (error) {
     next(error);
   }
