@@ -3,7 +3,7 @@ import { InferSchemaType, Schema, model } from 'mongoose';
 const taskSchema = new Schema(
   {
     content: String,
-    isDone: Boolean,
+    done: Boolean,
   },
   { timestamps: true },
 );

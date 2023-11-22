@@ -11,4 +11,8 @@ router.get('/content/:content', TasksController.getTaskByContent);
 
 router.post('/', TasksController.createTask);
 
+router.patch('/id/:taskId', TasksController.updateTask);
+
+router.delete('/id/:taskId', TasksController.deleteTask);
+
 export default router;
