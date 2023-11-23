@@ -5,9 +5,9 @@ import { Section } from '../../components/Section/section';
 export const AuthorPage = () => {
   return (
     <Container>
-      <Header title='Author' />
+      <Header title='About' />
       <Section
-        title='About'
+        title='Author'
         body={
           <div className='p-[20px] bg-white dark:bg-davysGray font-medium  mt-[2px] leading-normal dark:text-alto '>
             Hi!👋
