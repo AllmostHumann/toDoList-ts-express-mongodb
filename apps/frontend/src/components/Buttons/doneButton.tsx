@@ -18,7 +18,7 @@ export const DoneButton: React.FC<DoneButtonProps> = ({
       className={classNames({
         'w-[25px] h-[25px] border-none cursor:pointer p-0 transition-none':
           true,
-        'bg-japaneseLaurel hover:bg-limeade hover:border-[1px] hover:border-solid hover:border-black dark:bg-green-900 text-white':
+        'bg-japaneseLaurel hover:bg-limeade hover:border-[1px] hover:border-solid hover:border-black dark:bg-green-700 text-white':
           task,
       })}
       onClick={onClick}
