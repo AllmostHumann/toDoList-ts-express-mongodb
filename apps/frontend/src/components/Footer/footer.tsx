@@ -1,10 +1,9 @@
 import { NavLink } from 'react-router-dom';
-import { toTasks } from '../../routers';
-import { ThemeButton } from '../Buttons/themeButton';
+import {  toAutor } from '../../routers';
 
-export const Nav = () => {
+export const Footer = () => {
   return (
-    <nav className='bg-teal dark:bg-sherpaBlue m-0 p-0 flex justify-center items-center list-none'>
+    <footer className='bg-teal dark:bg-sherpaBlue mt-auto p-0 flex justify-center items-center list-none'>
         <div className='m-[15px] bg-teal dark:bg-sherpaBlue'>
           <NavLink
             className={({ isActive }) =>
@@ -12,12 +11,11 @@ export const Nav = () => {
                 ? 'text-white no-underline font-bold hover:border-b-[1px] border-solid'
                 : 'text-white hover:border-b-[1px]'
             }
-            to={toTasks()}
+            to={toAutor()}
           >
-            Tasks
+            About
           </NavLink>
         </div>
-        <ThemeButton />
-    </nav>
+    </footer>
   );
 };

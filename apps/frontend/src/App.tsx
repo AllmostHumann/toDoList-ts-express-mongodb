@@ -4,6 +4,7 @@ import { toTask, toTasks, toAutor } from './routers';
 import { TaskPage } from './to-do-list/TaskPage/task';
 import { TasksPage } from './to-do-list/TasksPage/tasksPage';
 import { AuthorPage } from './to-do-list/AuthorPage/author';
+import { Footer } from './components/Footer/footer';
 
 export default function App() {
   return (
@@ -32,6 +33,7 @@ export default function App() {
           }
         />
       </Routes>
+      <Footer/>
     </HashRouter>
   );
 }

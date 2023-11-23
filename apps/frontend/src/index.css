@@ -4,6 +4,10 @@
 @tailwind components;
 @tailwind utilities;
 
+#root {
+  @apply min-h-screen flex flex-col
+}
+
 @layer base {
   body {
     @apply bg-alto font-montserrat dark:bg-jet;
