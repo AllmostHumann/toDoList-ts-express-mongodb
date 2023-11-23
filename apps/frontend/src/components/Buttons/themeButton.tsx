@@ -14,7 +14,7 @@ export const ThemeButton = () => {
 
   return (
     <button
-      className='absolute flex justify-center right-0 m-[15px] bg-teal dark:bg-sherpaBlue text-white'
+      className='bg-teal dark:bg-sherpaBlue text-white'
       onClick={toggleTheme}
     >
       {theme === 'light' ? (
