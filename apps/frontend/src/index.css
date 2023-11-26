@@ -5,7 +5,7 @@
 @tailwind utilities;
 
 #root {
-  @apply min-h-screen flex flex-col
+  @apply min-h-screen flex flex-col;
 }
 
 @layer base {

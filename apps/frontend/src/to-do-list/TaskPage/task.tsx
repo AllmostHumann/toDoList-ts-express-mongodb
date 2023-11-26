@@ -19,7 +19,7 @@ export const TaskPage = () => {
         title={task ? task.content : 'Task not found 😔'}
         body={
           task && (
-            <div className='p-[20px] bg-white leading-normal mb-[10px] border-[1px] flex flex-wrap'>
+            <div className='p-[20px] bg-white dark:text-alto dark:bg-davysGray leading-normal mb-[10px]  flex flex-wrap rounded-[5px]'>
               <strong>Done:</strong>&nbsp;
               {task.done ? 'Yes' : 'No'}
             </div>
