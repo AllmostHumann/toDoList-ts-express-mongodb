@@ -9,6 +9,8 @@ router.get('/id/:taskId', TasksController.getTaskById);
 
 router.get('/content/:content', TasksController.getTaskByContent);
 
+router.get('/exampleTasks/', TasksController.getExampleTasks);
+
 router.post('/', TasksController.createTask);
 
 router.patch('/id/:taskId', TasksController.updateTask);

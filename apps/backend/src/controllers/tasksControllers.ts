@@ -2,6 +2,7 @@ import { RequestHandler } from 'express';
 import TaskModel from '../models/taskModels.js';
 import createHttpError from 'http-errors';
 import mongoose from 'mongoose';
+import exampleTasksModels from '../models/exampleTasksModels.js';
 
 export const getTaskById: RequestHandler = async (req, res, next) => {
   const taskId = req.params.taskId;
@@ -40,6 +41,15 @@ export const getTasks: RequestHandler = async (req, res, next) => {
   try {
     const tasks = await TaskModel.find().exec();
     res.status(200).json(tasks);
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const getExampleTasks: RequestHandler = async (req, res, next) => {
+  try {
+    const exampleTasks = await exampleTasksModels.find().exec();
+    res.status(200).json(exampleTasks);
   } catch (error) {
     next(error);
   }
