@@ -37,6 +37,27 @@ export const getTaskByContent: RequestHandler = async (req, res, next) => {
   }
 };
 
+export const getExampleTaskByContent: RequestHandler = async (
+  req,
+  res,
+  next,
+) => {
+  const exampleTaskContent = req.params.content;
+
+  try {
+    const exampleTask = exampleTaskContent
+      ? await exampleTasksModels
+          .find({
+            content: new RegExp(exampleTaskContent, 'i'),
+          })
+          .exec()
+      : [];
+    res.status(200).json(exampleTask);
+  } catch (error) {
+    next(error);
+  }
+};
+
 export const getTasks: RequestHandler = async (req, res, next) => {
   try {
     const tasks = await TaskModel.find().exec();
