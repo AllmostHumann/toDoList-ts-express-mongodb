@@ -5,11 +5,16 @@ const router = express.Router();
 
 router.get('/', TasksController.getTasks);
 
+router.get('/exampleTasks/', TasksController.getExampleTasks);
+
 router.get('/id/:taskId', TasksController.getTaskById);
 
 router.get('/content/:content', TasksController.getTaskByContent);
 
-router.get('/exampleTasks/', TasksController.getExampleTasks);
+router.get(
+  '/exampleTasks/content/:content',
+  TasksController.getExampleTaskByContent,
+);
 
 router.post('/', TasksController.createTask);
 
