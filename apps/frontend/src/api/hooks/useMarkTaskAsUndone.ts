@@ -16,5 +16,6 @@ export const useMarkTaskAsUndone = () => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['tasks'] });
     },
+    networkMode: 'offlineFirst',
   });
 };

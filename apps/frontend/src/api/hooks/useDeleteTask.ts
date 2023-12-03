@@ -12,5 +12,6 @@ export const useDeleteTask = () => {
   return useMutation({
     mutationFn: deleteTask,
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ['tasks'] }),
+    networkMode: 'offlineFirst',
   });
 };

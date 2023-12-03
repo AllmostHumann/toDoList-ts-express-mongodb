@@ -21,6 +21,7 @@ export const useGetTasks = (query?: string | null) => {
   return useQuery({
     queryKey: ['tasks', query],
     queryFn: () => getTasks(query),
+    networkMode: 'offlineFirst',
     enabled: true,
   });
 };

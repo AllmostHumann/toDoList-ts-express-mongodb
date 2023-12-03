@@ -21,6 +21,7 @@ export const useGetExampleTasks = (query: string | null) => {
   return useQuery({
     queryKey: ['exampleTasks', query],
     queryFn: () => getExampleTasks(query),
+    networkMode: 'offlineFirst',
     enabled: !useGetExampleTasks,
   });
 };

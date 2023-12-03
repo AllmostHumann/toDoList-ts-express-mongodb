@@ -12,5 +12,6 @@ export const usePostTask = () => {
   return useMutation({
     mutationFn: postTask,
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ['tasks'] }),
+    networkMode: 'offlineFirst',
   });
 };

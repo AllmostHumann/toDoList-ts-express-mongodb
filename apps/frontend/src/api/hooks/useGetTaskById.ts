@@ -15,6 +15,7 @@ export const useGetTaskById = (_id: string | undefined) => {
   return useQuery({
     queryKey: ['taskById', _id],
     queryFn: () => getTaskById(_id),
+    networkMode: 'offlineFirst',
     enabled: !!useGetTaskById,
   });
 };
