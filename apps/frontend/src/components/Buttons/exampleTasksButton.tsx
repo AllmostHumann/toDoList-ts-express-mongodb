@@ -1,17 +1,19 @@
 import { Button } from './button';
-import useTasksStore from '../../utils/taskStore';
+import { useGetExampleTasks } from '../../api/hooks/useGetExampleTasks';
+import { useLocation } from 'react-router-dom';
+import searchQueryParamName from '../../utils/searchQueryParamName';
 
 export const ExampleTasksButton = () => {
-  const store = useTasksStore();
-  const loading = store.loading;
-  const getExampleTasks = store.getExampleTasks;
+  const location = useLocation();
+  const query = new URLSearchParams(location.search).get(searchQueryParamName);
+  const { isLoading, refetch } = useGetExampleTasks(query);
 
   return (
     <Button
-      onClick={() => getExampleTasks()}
-      disabled={loading}
+      onClick={() => refetch()}
+      disabled={isLoading}
     >
-      {loading ? 'Loading...' : 'Get example tasks'}
+      {isLoading ? 'Loading...' : 'Get example tasks'}
     </Button>
   );
 };
