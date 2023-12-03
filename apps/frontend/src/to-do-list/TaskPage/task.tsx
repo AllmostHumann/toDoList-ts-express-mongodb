@@ -1,16 +1,12 @@
-// import { useParams } from "react-router-dom"
 import { useParams } from 'react-router-dom';
 import { Container } from '../../components/Container/container';
 import { Header } from '../../components/Header/header';
 import { Section } from '../../components/Section/section';
-import useTasksStore from '../../utils/taskStore';
+import { useGetTaskById } from '../../api/hooks/useGetTaskById';
 
 export const TaskPage = () => {
-  const store = useTasksStore();
-  const { id } = useParams();
-  const tasks = store.tasks;
-  const task = store.getTaskById(id, tasks);
-  console.log(id);
+  const { _id } = useParams();
+  const { data: task } = useGetTaskById(_id);
 
   return (
     <Container>
