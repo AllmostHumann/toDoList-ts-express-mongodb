@@ -1,18 +1,20 @@
 import { axiosInstance } from '../utilities/axiosInstance';
 import { apiConfig } from '../config/apiRoutes';
-import { TasksResponse } from '../types/task';
 import { useQuery } from '@tanstack/react-query';
+import { TaskResult } from '../types/task';
 
-export const getTaskById = async (_id: TasksResponse) => {
-  const response = await axiosInstance.get<TasksResponse>(
-    `${apiConfig.getTaskId.endpoint}` + _id,
+const getTaskById = async (_id: string | undefined) => {
+  const response = await axiosInstance.get<TaskResult>(
+    `${apiConfig.getTaskById.endpoint}` + _id,
   );
+  console.log(response.data);
   return response.data;
 };
 
-export const useGetTaskById = (_id: TasksResponse) =>
-  useQuery({
+export const useGetTaskById = (_id: string | undefined) => {
+  return useQuery({
     queryKey: ['taskById', _id],
     queryFn: () => getTaskById(_id),
-    enabled: false,
+    enabled: !!useGetTaskById,
   });
+};

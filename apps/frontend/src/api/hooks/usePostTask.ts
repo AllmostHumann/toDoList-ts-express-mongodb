@@ -1,13 +1,16 @@
 import { axiosInstance } from '../utilities/axiosInstance';
 import { apiConfig } from '../config/apiRoutes';
-import { TaskResult } from '../types/task';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-export const postTask = async (task: TaskResult) => {
+const postTask = async (task: { content: string; done: boolean }) => {
   await axiosInstance.post(`${apiConfig.postTask.endpoint}`, task);
 };
 
-export const usePostTask = () =>
-  useMutation<void, Error, TaskResult, unknown>({
-    mutationFn: (task) => postTask(task),
+export const usePostTask = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: postTask,
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['tasks'] }),
   });
+};

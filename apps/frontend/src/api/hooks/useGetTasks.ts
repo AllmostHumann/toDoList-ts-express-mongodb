@@ -3,13 +3,13 @@ import { apiConfig } from '../config/apiRoutes';
 import { TasksResponse } from '../types/task';
 import { useQuery } from '@tanstack/react-query';
 
-export const getTasks = async (query: string | null) => {
+const getTasks = async (query?: string | null) => {
   if (query) {
     const response = await axiosInstance.get<TasksResponse>(
-      `${apiConfig.getTaskContent.endpoint}` + query,
+      `${apiConfig.getTaskByContent.endpoint}` + query,
     );
     return response.data;
-  } else {
+  } else if (!query) {
     const response = await axiosInstance.get<TasksResponse>(
       `${apiConfig.getTasks.endpoint}`,
     );
@@ -17,7 +17,7 @@ export const getTasks = async (query: string | null) => {
   }
 };
 
-export const useGetTasks = (query: string | null) => {
+export const useGetTasks = (query?: string | null) => {
   return useQuery({
     queryKey: ['tasks', query],
     queryFn: () => getTasks(query),
