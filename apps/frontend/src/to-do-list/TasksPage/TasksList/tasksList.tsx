@@ -11,16 +11,24 @@ import { useDeleteTask } from '../../../api/hooks/useDeleteTask';
 import { useMarkTaskAsDone } from '../../../api/hooks/useMarkTaskAsDone';
 import { useMarkTaskAsUndone } from '../../../api/hooks/useMarkTaskAsUndone';
 import useTasksStore from '../../../utils/taskStore';
+// import { useEffect } from 'react';
 
 export const TasksList = () => {
   const store = useTasksStore();
   const location = useLocation();
+  // const { setTasks } = useTasksStore();
   const query = new URLSearchParams(location.search).get(searchQueryParamName);
   const { data: tasks } = useGetTasks(query);
   const { mutate: deleteTask } = useDeleteTask();
   const { mutate: markTaskAsDone } = useMarkTaskAsDone();
   const { mutate: markTaskAsUndone } = useMarkTaskAsUndone();
   const hideDone = store.hideDone;
+
+  // useEffect(() => {
+  //   if (tasks) {
+  //     setTasks(tasks);
+  //   }
+  // }, [setTasks, tasks]);
 
   return (
     <ul className='p-[20px] m-auto'>
