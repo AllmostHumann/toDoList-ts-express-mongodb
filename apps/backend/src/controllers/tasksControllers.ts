@@ -19,6 +19,7 @@ export const getTaskById: RequestHandler = async (req, res, next) => {
     }
 
     res.status(200).json(task);
+    console.log(task);
   } catch (error) {
     next(error);
   }
@@ -32,6 +33,7 @@ export const getTaskByContent: RequestHandler = async (req, res, next) => {
       ? await TaskModel.find({ content: new RegExp(taskContent, 'i') }).exec()
       : [];
     res.status(200).json(task);
+    console.log(task);
   } catch (error) {
     next(error);
   }
@@ -53,6 +55,7 @@ export const getExampleTaskByContent: RequestHandler = async (
           .exec()
       : [];
     res.status(200).json(exampleTask);
+    console.log(exampleTask);
   } catch (error) {
     next(error);
   }
@@ -71,6 +74,7 @@ export const getExampleTasks: RequestHandler = async (req, res, next) => {
   try {
     const exampleTasks = await exampleTasksModels.find().exec();
     res.status(200).json(exampleTasks);
+    console.log('Example tasks added');
   } catch (error) {
     next(error);
   }
@@ -101,7 +105,7 @@ export const createTask: RequestHandler<
     });
 
     res.status(201).json(newTask);
-    console.log(newTask);
+    console.log('New task added:', `${newTask}`);
   } catch (error) {
     next(error);
   }
@@ -139,6 +143,12 @@ export const updateTaskStatus: RequestHandler<
 
     const updateTaskStatus = await task.save();
     res.status(200).json(updateTaskStatus);
+    console.log(
+      'task',
+      `${taskId}`,
+      'status changed to',
+      ` ${updateTaskStatus}`,
+    );
   } catch (error) {
     next(error);
   }
@@ -160,6 +170,7 @@ export const updateAllTasksStatus: RequestHandler<
     }
 
     res.status(200).json({ message: 'All tasks updated successfully' });
+    console.log('All tasks updated successfully');
   } catch (error) {
     next(error);
   }
@@ -180,6 +191,7 @@ export const deleteTask: RequestHandler = async (req, res, next) => {
 
     await task.deleteOne();
     res.sendStatus(204);
+    console.log('task', `${taskId}`, 'deleted');
   } catch (error) {
     next(error);
   }
