@@ -18,7 +18,9 @@ router.get(
 
 router.post('/', TasksController.createTask);
 
-router.patch('/id/:taskId', TasksController.updateTask);
+router.patch('/id/:taskId', TasksController.updateTaskStatus);
+
+router.patch('/', TasksController.updateAllTasksStatus);
 
 router.delete('/id/:taskId', TasksController.deleteTask);
 

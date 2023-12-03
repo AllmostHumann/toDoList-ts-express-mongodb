@@ -1,7 +1,7 @@
 export const apiBaseUrl = 'http://localhost:5000/api';
 
 const commonEndpoints = {
-  tasks: '/tasks',
+  tasks: '/tasks/',
   taskId: '/tasks/id/',
   getTaskContent: '/tasks/content/',
   exampleTasksContent: '/tasks/exampleTasks/',
@@ -12,10 +12,10 @@ export const apiConfig = {
   getTasks: {
     endpoint: `${commonEndpoints.tasks}`,
   },
-  getTaskId: {
+  getTaskById: {
     endpoint: `${commonEndpoints.taskId}`,
   },
-  getTaskContent: {
+  getTaskByContent: {
     endpoint: `${commonEndpoints.getTaskContent}`,
   },
   getExampleTasks: {
@@ -26,9 +26,6 @@ export const apiConfig = {
   },
   postTask: {
     endpoint: `${commonEndpoints.tasks}`,
-  },
-  deleteTask: {
-    endpoint: `${commonEndpoints.taskId}`,
   },
   updateTask: {
     endpoint: `${commonEndpoints.taskId}`,

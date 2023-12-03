@@ -111,27 +111,23 @@ interface UpdateTaskParams {
   taskId: string;
 }
 
-interface UdpateTaskBody {
+interface UpdateTaskBody {
   content?: string;
-  done: boolean;
+  done?: boolean;
 }
 
-export const updateTask: RequestHandler<
+export const updateTaskStatus: RequestHandler<
   UpdateTaskParams,
   unknown,
-  UdpateTaskBody,
+  UpdateTaskBody,
   unknown
 > = async (req, res, next) => {
   const taskId = req.params.taskId;
-  const newContent = req.body.content;
   const newDone = req.body.done;
 
   try {
     if (!mongoose.isValidObjectId(taskId)) {
       throw createHttpError(400, 'Invalid task id');
-    }
-    if (!newContent) {
-      throw createHttpError(400, 'Task must have a content');
     }
 
     const task = await TaskModel.findById(taskId).exec();
@@ -139,11 +135,31 @@ export const updateTask: RequestHandler<
       throw createHttpError(404, 'Task not found');
     }
 
-    task.content = newContent;
     task.done = newDone;
 
-    const udpatedTask = await task.save();
-    res.status(200).json(udpatedTask);
+    const updateTaskStatus = await task.save();
+    res.status(200).json(updateTaskStatus);
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const updateAllTasksStatus: RequestHandler<
+  UpdateTaskParams,
+  unknown,
+  UpdateTaskBody,
+  unknown
+> = async (req, res, next) => {
+  const newDone = req.body.done;
+
+  try {
+    const updateResult = await TaskModel.updateMany({}, { done: newDone });
+
+    if (updateResult.matchedCount === 0) {
+      throw createHttpError(404, 'No tasks found');
+    }
+
+    res.status(200).json({ message: 'All tasks updated successfully' });
   } catch (error) {
     next(error);
   }
