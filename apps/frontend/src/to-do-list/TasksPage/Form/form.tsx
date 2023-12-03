@@ -1,10 +1,10 @@
 import React from 'react';
 import { useState } from 'react';
-import { nanoid } from 'nanoid';
-import useTasksStore from '../../../utils/taskStore';
+// import useTasksStore from '../../../utils/taskStore';
 import { Input } from '../../../components/Input/input';
 import { FormButton } from '../../../components/Buttons/formButton';
 import { FormComponent } from '../../../components/Form/form';
+import { usePostTask } from '../../../api/hooks/usePostTask';
 
 interface FormProps {
   inputRef: React.RefObject<HTMLInputElement>;
@@ -12,7 +12,7 @@ interface FormProps {
 
 export const Form: React.FC<FormProps> = ({ inputRef }) => {
   const [newTaskContent, setNewTaskContent] = useState('');
-  const store = useTasksStore();
+  const { mutate } = usePostTask();
 
   const onFormSubmit = (event: React.FormEvent) => {
     event.preventDefault();
@@ -22,11 +22,7 @@ export const Form: React.FC<FormProps> = ({ inputRef }) => {
       return;
     }
 
-    store.addTask({
-      content: trimmNewsTaskContent,
-      id: nanoid(),
-      done: false,
-    });
+    mutate({ content: trimmNewsTaskContent, done: false });
 
     setNewTaskContent('');
     inputRef.current?.focus();
