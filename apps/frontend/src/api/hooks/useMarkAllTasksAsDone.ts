@@ -4,7 +4,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 const markAllTasksAsDone = async () => {
   await axiosInstance.patch(`${apiConfig.getTasks.endpoint}`, {
-    done: false,
+    done: true,
   });
 };
 
