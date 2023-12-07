@@ -22,6 +22,7 @@ export const Seach = () => {
   return (
     <FormComponent>
       <Input
+        className='border-solid border-[1px] p-[5px] border-silverChalice w-[100%]'
         placeholder='Filter tasks'
         value={query || ''}
         onChange={onInputChange}
