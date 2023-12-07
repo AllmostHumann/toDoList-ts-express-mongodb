@@ -10,6 +10,7 @@ import { useGetTasks } from '../../../api/hooks/useGetTasks';
 import { useDeleteTask } from '../../../api/hooks/useDeleteTask';
 import { useMarkTaskAsDone } from '../../../api/hooks/useMarkTaskAsDone';
 import { useMarkTaskAsUndone } from '../../../api/hooks/useMarkTaskAsUndone';
+import DeleteIcon from '../../../components/Buttons/ButtonIcons/deleteButton.svg?react';
 import useTasksStore from '../../../utils/taskStore';
 // import { useEffect } from 'react';
 
@@ -42,6 +43,14 @@ export const TasksList = () => {
           key={task._id}
         >
           <DoneButton
+            className={classNames({
+              'w-[25px] h-[25px] border-none cursor:pointer p-0  text-white':
+                true,
+              ' bg-limeade hover:bg-japaneseLaurel dark:bg-green-700 ':
+                task.done === false,
+              ' bg-orange-500 hover:bg-orange-600 dark:bg-orange-700 ':
+                task.done === true,
+            })}
             onClick={() => {
               task.done === false
                 ? markTaskAsDone(task._id)
@@ -49,16 +58,14 @@ export const TasksList = () => {
             }}
           >
             <p className='m-auto translate-y-[1px] hover:translate-y-[-0.5px]'>
-              {task.done ? '✔' : '✔'}
+              {task.done ? 'X' : '✔'}
             </p>
           </DoneButton>
           <Content done={task.done}>
             <NavLink to={toTask({ _id: task._id })}>{task.content}</NavLink>
           </Content>
           <DeleteButton onClick={() => deleteTask(task._id)}>
-            <p className='m-auto translate-y-[1px] hover:translate-y-[-0.5px]'>
-              X
-            </p>
+            <DeleteIcon className='m-[3px] w-fit h-fit' />
           </DeleteButton>
         </li>
       ))}
