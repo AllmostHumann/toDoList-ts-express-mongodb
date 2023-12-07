@@ -2,8 +2,8 @@ import { axiosInstance } from '../utilities/axiosInstance';
 import { apiConfig } from '../config/apiRoutes';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-const markTaskAsUndone = async (_id: string | undefined) => {
-  await axiosInstance.patch(`${apiConfig.updateTask.endpoint}` + _id, {
+const markTaskAsUndone = async (_id: string) => {
+  await axiosInstance.patch(`${apiConfig.updateTaskStatus.endpoint}${_id}`, {
     done: false,
   });
 };

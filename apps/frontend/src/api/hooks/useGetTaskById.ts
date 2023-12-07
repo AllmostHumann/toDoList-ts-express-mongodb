@@ -5,9 +5,8 @@ import { TaskResult } from '../types/task';
 
 const getTaskById = async (_id: string | undefined) => {
   const response = await axiosInstance.get<TaskResult>(
-    `${apiConfig.getTaskById.endpoint}` + _id,
+    `${apiConfig.getTaskById.endpoint}${_id}`,
   );
-  console.log(response.data);
   return response.data;
 };
 
