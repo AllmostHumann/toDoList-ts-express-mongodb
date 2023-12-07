@@ -116,8 +116,8 @@ interface UpdateTaskParams {
 }
 
 interface UpdateTaskBody {
-  content?: string;
-  done?: boolean;
+  content: string;
+  done: boolean;
 }
 
 export const updateTaskStatus: RequestHandler<
@@ -143,12 +143,36 @@ export const updateTaskStatus: RequestHandler<
 
     const updateTaskStatus = await task.save();
     res.status(200).json(updateTaskStatus);
-    console.log(
-      'task',
-      `${taskId}`,
-      'status changed to',
-      ` ${updateTaskStatus}`,
-    );
+    console.log('task', `${taskId}`, 'status changed to', `${newDone}`);
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const updateTaskContent: RequestHandler<
+  UpdateTaskParams,
+  unknown,
+  UpdateTaskBody,
+  unknown
+> = async (req, res, next) => {
+  const taskId = req.params.taskId;
+  const newContent = req.body.content;
+
+  try {
+    if (!mongoose.isValidObjectId(taskId)) {
+      throw createHttpError(400, 'Invalid task id');
+    }
+
+    const task = await TaskModel.findById(taskId).exec();
+    if (!task) {
+      throw createHttpError(404, 'Task not found');
+    }
+
+    task.content = newContent;
+
+    const updateTaskContent = await task.save();
+    res.status(200).json(updateTaskContent);
+    console.log('task', `${taskId}`, 'content changed to', ` ${newContent}`);
   } catch (error) {
     next(error);
   }
