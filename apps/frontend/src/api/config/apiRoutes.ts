@@ -27,7 +27,10 @@ export const apiConfig = {
   postTask: {
     endpoint: `${commonEndpoints.tasks}`,
   },
-  updateTask: {
+  updateTaskStatus: {
+    endpoint: `${commonEndpoints.taskId}`,
+  },
+  updateTaskContent: {
     endpoint: `${commonEndpoints.taskId}`,
   },
 };
