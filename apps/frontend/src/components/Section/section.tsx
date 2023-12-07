@@ -1,5 +1,5 @@
 interface SectionContent {
-  title: string | undefined;
+  title: React.ReactNode;
   body: React.ReactNode;
   extraHeaderContent?: React.ReactNode;
 }
