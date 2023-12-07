@@ -12,7 +12,7 @@ interface FormProps {
 
 export const Form: React.FC<FormProps> = ({ inputRef }) => {
   const [newTaskContent, setNewTaskContent] = useState('');
-  const { mutate } = usePostTask();
+  const { mutate: postTask } = usePostTask();
 
   const onFormSubmit = (event: React.FormEvent) => {
     event.preventDefault();
@@ -22,7 +22,7 @@ export const Form: React.FC<FormProps> = ({ inputRef }) => {
       return;
     }
 
-    mutate({ content: trimmNewsTaskContent, done: false });
+    postTask({ content: trimmNewsTaskContent, done: false });
 
     setNewTaskContent('');
     inputRef.current?.focus();
@@ -31,6 +31,7 @@ export const Form: React.FC<FormProps> = ({ inputRef }) => {
   return (
     <FormComponent onSubmit={onFormSubmit}>
       <Input
+        className='border-solid border-[1px] p-[5px] border-silverChalice w-[100%]'
         ref={inputRef}
         value={newTaskContent}
         placeholder='What have to be done?'
