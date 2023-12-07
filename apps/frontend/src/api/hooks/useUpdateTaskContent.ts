@@ -2,14 +2,14 @@ import { axiosInstance } from '../utilities/axiosInstance';
 import { apiConfig } from '../config/apiRoutes';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-const updateTaskContent = async (_id: string | undefined, content: string) => {
+const updateTaskContent = async (_id?: string, content?: string) => {
   await axiosInstance.patch(
     `${apiConfig.updateTaskContent.endpoint}${_id}/content`,
     { content },
   );
 };
 
-export const useUpdateTaskContent = (_id: string | undefined) => {
+export const useUpdateTaskContent = (_id?: string) => {
   const queryClient = useQueryClient();
 
   return useMutation({
