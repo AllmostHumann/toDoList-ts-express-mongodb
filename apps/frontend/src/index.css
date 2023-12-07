@@ -35,7 +35,7 @@
   }
   button {
     @apply rounded-[5px] text-teal dark:text-platinum bg-white
-    dark:bg-davysGray dark:placeholder:text-black font-semibold;
+    dark:bg-davysGray dark:placeholder:text-black font-semibold md:hover:scale-[1.15] hover:scale-[1.03] duration-300;
   }
   a {
     @apply dark:text-platinum font-semibold decoration-black decoration-[2px];

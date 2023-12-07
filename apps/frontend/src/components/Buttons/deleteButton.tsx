@@ -9,7 +9,7 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
 }) => {
   return (
     <button
-      className='w-[25px] h-[25px] border-none cursor:pointer p-0 transition-none bg-red-600 hover:bg-sunsetOrange hover:border-[1px] hover:border-solid hover:border-black dark:bg-red-700 text-white'
+      className='w-[25px] h-[25px] border-none cursor:pointer p-0 bg-sunsetOrange hover:bg-red-600 dark:bg-red-700 text-white'
       onClick={onClick}
     >
       {children}
