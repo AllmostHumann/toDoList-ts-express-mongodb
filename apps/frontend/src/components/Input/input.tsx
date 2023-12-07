@@ -1,23 +1,24 @@
 import React, { ChangeEvent, Ref } from 'react';
 
-interface InputProps {
+export interface InputProps {
   value: string;
-  placeholder: string;
+  placeholder?: string;
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
   ref?: Ref<HTMLInputElement>;
+  className?: string;
 }
 
 export const Input: React.FC<InputProps> = React.forwardRef<
   HTMLInputElement,
   InputProps
->(({ onChange, placeholder, value }, inputRef) => {
+>(({ onChange, placeholder, value, className }, inputRef) => {
   return (
     <input
       ref={inputRef}
       value={value}
       placeholder={placeholder}
       onChange={onChange}
-      className='border-solid border-[1px] p-[5px] border-silverChalice w-[100%]'
+      className={className}
     />
   );
 });
