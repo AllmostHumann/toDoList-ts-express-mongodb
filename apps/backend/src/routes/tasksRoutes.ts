@@ -20,6 +20,8 @@ router.post('/', TasksController.createTask);
 
 router.patch('/id/:taskId', TasksController.updateTaskStatus);
 
+router.patch('/id/:taskId/content', TasksController.updateTaskContent);
+
 router.patch('/', TasksController.updateAllTasksStatus);
 
 router.delete('/id/:taskId', TasksController.deleteTask);
