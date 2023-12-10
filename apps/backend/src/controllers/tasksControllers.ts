@@ -1,8 +1,8 @@
 import { RequestHandler } from 'express';
-import TaskModel from '../models/taskModels.js';
+import TaskModel from '../models/taskModel.js';
 import createHttpError from 'http-errors';
 import mongoose from 'mongoose';
-import exampleTasksModels from '../models/exampleTasksModels.js';
+import exampleTasksModels from '../models/exampleTasksModel.js';
 
 export const getTaskById: RequestHandler = async (req, res, next) => {
   const taskId = req.params.taskId;
