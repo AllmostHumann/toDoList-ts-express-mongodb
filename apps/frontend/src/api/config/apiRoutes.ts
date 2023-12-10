@@ -6,6 +6,10 @@ const commonEndpoints = {
   getTaskContent: '/tasks/content/',
   exampleTasksContent: '/tasks/exampleTasks/',
   getExampleTasksByContent: '/tasks/exampleTasks/content/',
+  getAuthenticadedUser: '/users/',
+  userSignup: '/users/signup/',
+  userLogin: '/users/login/',
+  userLogout: '/users/logout',
 };
 
 export const apiConfig = {
@@ -32,5 +36,17 @@ export const apiConfig = {
   },
   updateTaskContent: {
     endpoint: `${commonEndpoints.taskId}`,
+  },
+  getAuthenticadedUser: {
+    endopoint: `${commonEndpoints.getAuthenticadedUser}`,
+  },
+  userSignup: {
+    endpoint: `${commonEndpoints.userSignup}`,
+  },
+  userLogin: {
+    endpoint: `${commonEndpoints.userLogin}`,
+  },
+  userLogout: {
+    endpoint: `${commonEndpoints.userLogout}`,
   },
 };
