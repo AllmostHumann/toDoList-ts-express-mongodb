@@ -2,15 +2,15 @@ import { useParams } from 'react-router-dom';
 import { Container } from '../../components/Container/container';
 import { Header } from '../../components/Header/header';
 import { Section } from '../../components/Section/section';
-import { useGetTaskById } from '../../api/hooks/useGetTaskById';
+import { useGetTaskById } from '../../api/hooks/tasks/useGetTaskById';
 import { EditButton } from '../../components/Buttons/editButton';
 import EditIcon from '../../components/Buttons/ButtonIcons/editButton.svg?react';
-import { useUpdateTaskContent } from '../../api/hooks/useUpdateTaskContent';
+import { useUpdateTaskContent } from '../../api/hooks/tasks/useUpdateTaskContent';
 import { useEffect, useRef, useState } from 'react';
 import { Input } from '../../components/Input/input';
 import { DoneButton } from '../../components/Buttons/doneButton';
-import { useMarkTaskAsDone } from '../../api/hooks/useMarkTaskAsDone';
-import { useMarkTaskAsUndone } from '../../api/hooks/useMarkTaskAsUndone';
+import { useMarkTaskAsDone } from '../../api/hooks/tasks/useMarkTaskAsDone';
+import { useMarkTaskAsUndone } from '../../api/hooks/tasks/useMarkTaskAsUndone';
 import classNames from 'classnames';
 
 export const TaskPage = () => {

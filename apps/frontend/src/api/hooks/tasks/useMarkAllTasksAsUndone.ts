@@ -1,9 +1,10 @@
-import { axiosInstance } from '../utilities/axiosInstance';
-import { apiConfig } from '../config/apiRoutes';
+import { axiosInstance } from '../../utilities/axiosInstance';
+import { apiConfig } from '../../config/apiRoutes';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { Tasks } from '../../types/task';
 
 const markAllTasksAsUndone = async () => {
-  await axiosInstance.patch(`${apiConfig.getTasks.endpoint}`, {
+  await axiosInstance.patch<Tasks>(`${apiConfig.getTasks.endpoint}`, {
     done: false,
   });
 };

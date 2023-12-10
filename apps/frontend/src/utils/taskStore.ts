@@ -1,23 +1,23 @@
 import { create } from 'zustand';
 import { devtools, persist, createJSONStorage } from 'zustand/middleware';
-import { TaskResult } from '../api/types/task';
+import { Task } from '../api/types/task';
 
 interface TasksState {
-  tasks: TaskResult[];
+  tasks: Task[];
   hideDone: boolean;
 }
 
 interface TasksStore extends TasksState {
-  // addTask: (task: TaskResult) => void;
+  // addTask: (task: Task) => void;
   // removeTask: (_id: string) => void;
-  setTasks: (tasks: TaskResult[]) => void;
+  setTasks: (tasks: Task[]) => void;
   // setAllTasksDone: () => void;
   // toggleTaskDone: (_id: string) => void;
   toggleHideDoneTasks: () => void;
-  // getTaskById: (_id: string, tasks: TaskResult[]) => TaskResult;
-  // getTaskByQuery: (query: string | null, tasks: TaskResult[]) => TaskResult[];
-  areAllTasksDone: (tasks: TaskResult[]) => boolean;
-  areTasksListEmpty: (tasks: TaskResult[]) => boolean;
+  // getTaskById: (_id: string, tasks: Task[]) => Task;
+  // getTaskByQuery: (query: string | null, tasks: Task[]) => Task[];
+  areAllTasksDone: (tasks: Task[]) => boolean;
+  areTasksListEmpty: (tasks: Task[]) => boolean;
   // getExampleTasks: () => Promise<void>;
 }
 

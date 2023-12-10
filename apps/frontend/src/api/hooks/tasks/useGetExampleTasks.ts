@@ -1,16 +1,16 @@
-import { axiosInstance } from '../utilities/axiosInstance';
-import { apiConfig } from '../config/apiRoutes';
-import { TasksResponse } from '../types/task';
+import { axiosInstance } from '../../utilities/axiosInstance';
+import { apiConfig } from '../../config/apiRoutes';
+import { Tasks } from '../../types/task';
 import { useQuery } from '@tanstack/react-query';
 
 const getExampleTasks = async (query: string | null) => {
   if (query) {
-    const response = await axiosInstance.get<TasksResponse>(
+    const response = await axiosInstance.get<Tasks>(
       `${apiConfig.getExampleTaskByContent.endpoint}` + query,
     );
     return response.data;
-  } else {
-    const response = await axiosInstance.get<TasksResponse>(
+  } else if (!query) {
+    const response = await axiosInstance.get<Tasks>(
       `${apiConfig.getExampleTasks.endpoint}`,
     );
     return response.data;

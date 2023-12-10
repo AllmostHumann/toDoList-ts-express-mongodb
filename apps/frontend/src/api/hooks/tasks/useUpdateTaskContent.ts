@@ -1,9 +1,10 @@
-import { axiosInstance } from '../utilities/axiosInstance';
-import { apiConfig } from '../config/apiRoutes';
+import { axiosInstance } from '../../utilities/axiosInstance';
+import { apiConfig } from '../../config/apiRoutes';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { Task } from '../../types/task';
 
 const updateTaskContent = async (_id?: string, content?: string) => {
-  await axiosInstance.patch(
+  await axiosInstance.patch<Task>(
     `${apiConfig.updateTaskContent.endpoint}${_id}/content`,
     { content },
   );

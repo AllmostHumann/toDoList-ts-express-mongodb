@@ -1,10 +1,10 @@
-import { axiosInstance } from '../utilities/axiosInstance';
-import { apiConfig } from '../config/apiRoutes';
+import { axiosInstance } from '../../utilities/axiosInstance';
+import { apiConfig } from '../../config/apiRoutes';
 import { useQuery } from '@tanstack/react-query';
-import { TaskResult } from '../types/task';
+import { Task } from '../../types/task';
 
 const getTaskById = async (_id: string | undefined) => {
-  const response = await axiosInstance.get<TaskResult>(
+  const response = await axiosInstance.get<Task>(
     `${apiConfig.getTaskById.endpoint}${_id}`,
   );
   return response.data;

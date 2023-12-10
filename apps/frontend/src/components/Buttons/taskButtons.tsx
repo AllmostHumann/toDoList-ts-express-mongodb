@@ -1,6 +1,6 @@
-import { useGetTasks } from '../../api/hooks/useGetTasks';
-import { useMarkAllTasksAsDone } from '../../api/hooks/useMarkAllTasksAsDone';
-import { useMarkAllTasksAsUndone } from '../../api/hooks/useMarkAllTasksAsUndone';
+import { useGetTasks } from '../../api/hooks/tasks/useGetTasks';
+import { useMarkAllTasksAsDone } from '../../api/hooks/tasks/useMarkAllTasksAsDone';
+import { useMarkAllTasksAsUndone } from '../../api/hooks/tasks/useMarkAllTasksAsUndone';
 import useTasksStore from '../../utils/taskStore';
 import { Button } from './button';
 

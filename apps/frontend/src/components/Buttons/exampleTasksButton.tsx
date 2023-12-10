@@ -1,5 +1,5 @@
 import { Button } from './button';
-import { useGetExampleTasks } from '../../api/hooks/useGetExampleTasks';
+import { useGetExampleTasks } from '../../api/hooks/tasks/useGetExampleTasks';
 import { useLocation } from 'react-router-dom';
 import searchQueryParamName from '../../utils/searchQueryParamName';
 

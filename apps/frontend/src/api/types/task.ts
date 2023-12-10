@@ -1,4 +1,4 @@
-export interface TaskResult {
+export interface Task {
   _id: string;
   content: string;
   done?: boolean;
@@ -7,4 +7,4 @@ export interface TaskResult {
   __v?: number;
 }
 
-export type TasksResponse = TaskResult[];
+export type Tasks = Task[];

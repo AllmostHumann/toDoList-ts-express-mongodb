@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Input } from '../../../components/Input/input';
 import { FormButton } from '../../../components/Buttons/formButton';
 import { FormComponent } from '../../../components/Form/form';
-import { usePostTask } from '../../../api/hooks/usePostTask';
+import { usePostTask } from '../../../api/hooks/tasks/usePostTask';
 
 interface FormProps {
   inputRef: React.RefObject<HTMLInputElement>;
