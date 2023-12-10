@@ -14,11 +14,12 @@
     "allowJs": true,
     "resolveJsonModule": true,
     "moduleDetection": "force",
-    "isolatedModules": true
+    "isolatedModules": true,
+    "typeRoots": ["node_modules/@types", "@types"]
   },
   "ts-node": {
-    "esm": true
-    // "experimentalSpecifierResolution": "node"
-  },
-  "include": ["src"]
+    "esm": true,
+    "files": true
+  }
+  // "include": ["src"]
 }
