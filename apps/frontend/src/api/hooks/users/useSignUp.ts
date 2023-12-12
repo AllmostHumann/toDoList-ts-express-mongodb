@@ -11,11 +11,14 @@ const userSignUp = async (user: {
   await axiosInstance.post<User>(`${apiConfig.userSignup.endpoint}`, user);
 };
 
+console.log(document.cookie);
+
 export const useUserSignup = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: userSignUp,
+    mutationFn: (user: { username: string; email: string; password: string }) =>
+      userSignUp(user),
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ['users'] }),
     networkMode: 'offlineFirst',
   });

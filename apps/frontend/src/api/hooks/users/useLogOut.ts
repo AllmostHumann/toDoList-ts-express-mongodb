@@ -4,7 +4,11 @@ import { apiConfig } from '../../config/apiRoutes';
 import { User } from '../../types/user';
 
 const userLogout = async () => {
-  await axiosInstance.post<User>(`${apiConfig.userLogout.endpoint}`);
+  const response = await axiosInstance.post<User>(
+    `${apiConfig.userLogout.endpoint}`,
+  );
+  console.log(response.data);
+  return response.data;
 };
 
 export const useUserLogout = () => {
@@ -12,7 +16,7 @@ export const useUserLogout = () => {
 
   return useMutation({
     mutationFn: userLogout,
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['users'] }),
+    onSuccess: () => queryClient.removeQueries({ queryKey: ['users'] }),
     networkMode: 'offlineFirst',
   });
 };
