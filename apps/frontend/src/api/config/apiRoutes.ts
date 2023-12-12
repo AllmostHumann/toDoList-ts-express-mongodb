@@ -6,9 +6,9 @@ const commonEndpoints = {
   getTaskContent: '/tasks/content/',
   exampleTasksContent: '/tasks/exampleTasks/',
   getExampleTasksByContent: '/tasks/exampleTasks/content/',
-  getAuthenticadedUser: '/users/',
-  userSignup: '/users/signup/',
-  userLogin: '/users/login/',
+  getAuthenticadedUser: '/users',
+  userSignup: '/users/signup',
+  userLogin: '/users/login',
   userLogout: '/users/logout',
 };
 
