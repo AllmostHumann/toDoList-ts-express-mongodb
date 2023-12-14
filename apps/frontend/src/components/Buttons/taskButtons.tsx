@@ -1,38 +1,52 @@
+import { Button } from './button';
 import { useGetTasks } from '../../api/hooks/tasks/useGetTasks';
 import { useMarkAllTasksAsDone } from '../../api/hooks/tasks/useMarkAllTasksAsDone';
 import { useMarkAllTasksAsUndone } from '../../api/hooks/tasks/useMarkAllTasksAsUndone';
+import { useGetAuthenticadedUser } from '../../api/hooks/users/useGetAuthenticadedUser';
 import useTasksStore from '../../utils/taskStore';
-import { Button } from './button';
 
 export const TaskButtons = () => {
-  const store = useTasksStore();
-  // const tasks = store.tasks;
-  // const areTasksListEmpty = store.areTasksListEmpty(tasks);
-  // const areAllTaskDone = store.areAllTasksDone(tasks);
-  // const hidden = store.hideDone;
-  const { data: task } = useGetTasks();
+  const { data: tasks } = useGetTasks();
+  const { data: loggedUser } = useGetAuthenticadedUser();
   const { mutate: setAllTaskDone } = useMarkAllTasksAsDone();
   const { mutate: setAllTaskUndone } = useMarkAllTasksAsUndone();
-  const setAllTaskHide = store.toggleHideDoneTasks;
-  const hidden = task?.every((task) => task.done === false);
-  const areTasksListEmpty = task?.every((task) => task.content.length === 0);
-  const areAllTaskDone = task?.every((task) => task.done);
+  const {
+    tasks: exampleTasks,
+    hidden,
+    areTasksListEmpty,
+    areAllTasksDone,
+    toggleHideDoneTasks,
+    setAllTasksDone,
+  } = useTasksStore();
+  const areAllTasksAreDone = areAllTasksDone(tasks);
+  const areAllExampleTasksDone = areAllTasksDone(exampleTasks);
+  const areTasksListIsEmpty = areTasksListEmpty(tasks || exampleTasks);
 
   return (
     <div className='flex flex-wrap basis-auto m-[5px] bg-white dark:bg-davysGray justify-center'>
-      {!areTasksListEmpty && (
+      {!areTasksListIsEmpty && loggedUser && (
         <>
-          <Button onClick={() => setAllTaskHide()}>
+          <Button onClick={() => toggleHideDoneTasks()}>
             {hidden ? 'Show' : 'Hide'} done
           </Button>
           <Button
             onClick={() => {
-              task?.map((task) =>
+              tasks?.map((task) =>
                 task.done === false ? setAllTaskDone() : setAllTaskUndone(),
               );
             }}
           >
-            Mark all as {areAllTaskDone ? 'undone' : 'done'}
+            Mark all as {areAllTasksAreDone ? 'undone' : 'done'}
+          </Button>
+        </>
+      )}
+      {!areTasksListIsEmpty && !loggedUser && (
+        <>
+          <Button onClick={() => toggleHideDoneTasks()}>
+            {hidden ? 'Show' : 'Hide'} done
+          </Button>
+          <Button onClick={() => setAllTasksDone()}>
+            Mark all as {areAllExampleTasksDone ? 'undone' : 'done'}
           </Button>
         </>
       )}
