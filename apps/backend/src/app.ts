@@ -8,10 +8,16 @@ import createHttpError, { isHttpError } from 'http-errors';
 import session from 'express-session';
 import env from './util/validateEnv.js';
 import MongoStore from 'connect-mongo';
+import { requiresAuth } from './middleware/auth.js';
 
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: 'http://localhost:5173',
+    credentials: true,
+  }),
+);
 
 app.use(morgan('dev'));
 
@@ -33,7 +39,7 @@ app.use(
 );
 
 app.use('/api/users', userRoutes);
-app.use('/api/tasks', tasksRoutes);
+app.use('/api/tasks', requiresAuth, tasksRoutes);
 
 app.use((req, res, next) => {
   next(createHttpError(404, 'Endpoint not found'));

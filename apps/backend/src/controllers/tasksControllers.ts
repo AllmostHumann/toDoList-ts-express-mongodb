@@ -2,12 +2,28 @@ import { RequestHandler } from 'express';
 import TaskModel from '../models/taskModel.js';
 import createHttpError from 'http-errors';
 import mongoose from 'mongoose';
-import exampleTasksModels from '../models/exampleTasksModel.js';
+import { assertIsDefined } from '../util/assertIsDefined.js';
+
+export const getTasks: RequestHandler = async (req, res, next) => {
+  const authenticatedUserId = req.session.userId;
+
+  try {
+    assertIsDefined(authenticatedUserId);
+
+    const tasks = await TaskModel.find({ userId: authenticatedUserId }).exec();
+    res.status(200).json(tasks);
+  } catch (error) {
+    next(error);
+  }
+};
 
 export const getTaskById: RequestHandler = async (req, res, next) => {
   const taskId = req.params.taskId;
+  const authenticatedUserId = req.session.userId;
 
   try {
+    assertIsDefined(authenticatedUserId);
+
     if (!mongoose.isValidObjectId(taskId)) {
       throw createHttpError(400, 'Invalid task id');
     }
@@ -16,6 +32,10 @@ export const getTaskById: RequestHandler = async (req, res, next) => {
 
     if (!task) {
       throw createHttpError(404, 'Task not found');
+    }
+
+    if (!task.userId?.equals(authenticatedUserId)) {
+      throw createHttpError(401, 'You cannot access this task');
     }
 
     res.status(200).json(task);
@@ -27,54 +47,20 @@ export const getTaskById: RequestHandler = async (req, res, next) => {
 
 export const getTaskByContent: RequestHandler = async (req, res, next) => {
   const taskContent = req.params.content;
+  const authenticatedUserId = req.session.userId;
 
   try {
+    assertIsDefined(authenticatedUserId);
+
     const task = taskContent
-      ? await TaskModel.find({ content: new RegExp(taskContent, 'i') }).exec()
+      ? await TaskModel.find({
+          userId: authenticatedUserId,
+          content: new RegExp(taskContent, 'i'),
+        }).exec()
       : [];
+
     res.status(200).json(task);
     console.log(task);
-  } catch (error) {
-    next(error);
-  }
-};
-
-export const getExampleTaskByContent: RequestHandler = async (
-  req,
-  res,
-  next,
-) => {
-  const exampleTaskContent = req.params.content;
-
-  try {
-    const exampleTask = exampleTaskContent
-      ? await exampleTasksModels
-          .find({
-            content: new RegExp(exampleTaskContent, 'i'),
-          })
-          .exec()
-      : [];
-    res.status(200).json(exampleTask);
-    console.log(exampleTask);
-  } catch (error) {
-    next(error);
-  }
-};
-
-export const getTasks: RequestHandler = async (req, res, next) => {
-  try {
-    const tasks = await TaskModel.find().exec();
-    res.status(200).json(tasks);
-  } catch (error) {
-    next(error);
-  }
-};
-
-export const getExampleTasks: RequestHandler = async (req, res, next) => {
-  try {
-    const exampleTasks = await exampleTasksModels.find().exec();
-    res.status(200).json(exampleTasks);
-    console.log('Example tasks added');
   } catch (error) {
     next(error);
   }
@@ -93,13 +79,17 @@ export const createTask: RequestHandler<
 > = async (req, res, next) => {
   const content = req.body.content;
   const done = req.body.done;
+  const authenticatedUserId = req.session.userId;
 
   try {
+    assertIsDefined(authenticatedUserId);
+
     if (!content) {
       throw createHttpError(400, 'Task must have a content');
     }
 
     const newTask = await TaskModel.create({
+      userId: authenticatedUserId,
       content: content,
       done: done,
     });
@@ -128,8 +118,11 @@ export const updateTaskStatus: RequestHandler<
 > = async (req, res, next) => {
   const taskId = req.params.taskId;
   const newDone = req.body.done;
+  const authenticatedUserId = req.session.userId;
 
   try {
+    assertIsDefined(authenticatedUserId);
+
     if (!mongoose.isValidObjectId(taskId)) {
       throw createHttpError(400, 'Invalid task id');
     }
@@ -137,6 +130,10 @@ export const updateTaskStatus: RequestHandler<
     const task = await TaskModel.findById(taskId).exec();
     if (!task) {
       throw createHttpError(404, 'Task not found');
+    }
+
+    if (!task.userId?.equals(authenticatedUserId)) {
+      throw createHttpError(401, 'You cannot access this task');
     }
 
     task.done = newDone;
@@ -157,8 +154,11 @@ export const updateTaskContent: RequestHandler<
 > = async (req, res, next) => {
   const taskId = req.params.taskId;
   const newContent = req.body.content;
+  const authenticatedUserId = req.session.userId;
 
   try {
+    assertIsDefined(authenticatedUserId);
+
     if (!mongoose.isValidObjectId(taskId)) {
       throw createHttpError(400, 'Invalid task id');
     }
@@ -166,6 +166,10 @@ export const updateTaskContent: RequestHandler<
     const task = await TaskModel.findById(taskId).exec();
     if (!task) {
       throw createHttpError(404, 'Task not found');
+    }
+
+    if (!task.userId?.equals(authenticatedUserId)) {
+      throw createHttpError(401, 'You cannot access this task');
     }
 
     task.content = newContent;
@@ -185,14 +189,19 @@ export const updateAllTasksStatus: RequestHandler<
   unknown
 > = async (req, res, next) => {
   const newDone = req.body.done;
+  const authenticatedUserId = req.session.userId;
 
   try {
-    const updateResult = await TaskModel.updateMany({}, { done: newDone });
+    assertIsDefined(authenticatedUserId);
 
-    if (updateResult.matchedCount === 0) {
+    const tasks = await TaskModel.updateMany(
+      { userId: authenticatedUserId },
+      { done: newDone },
+    ).exec();
+
+    if (tasks.matchedCount === 0) {
       throw createHttpError(404, 'No tasks found');
     }
-
     res.status(200).json({ message: 'All tasks updated successfully' });
     console.log('All tasks updated successfully');
   } catch (error) {
@@ -202,8 +211,11 @@ export const updateAllTasksStatus: RequestHandler<
 
 export const deleteTask: RequestHandler = async (req, res, next) => {
   const taskId = req.params.taskId;
+  const authenticatedUserId = req.session.userId;
 
   try {
+    assertIsDefined(authenticatedUserId);
+
     if (!mongoose.isValidObjectId(taskId)) {
       throw createHttpError(400, 'Invalid task id');
     }
@@ -211,6 +223,10 @@ export const deleteTask: RequestHandler = async (req, res, next) => {
 
     if (!task) {
       throw createHttpError(404, 'Task not found');
+    }
+
+    if (!task.userId?.equals(authenticatedUserId)) {
+      throw createHttpError(401, 'You cannot access this task');
     }
 
     await task.deleteOne();

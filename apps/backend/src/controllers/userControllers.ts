@@ -10,17 +10,12 @@ interface SignUpBody {
 }
 
 export const getAuthenticatedUser: RequestHandler = async (req, res, next) => {
-  const authenticatedUserId = req.session.userId;
-
   try {
-    if (!authenticatedUserId) {
-      throw createHttpError(401, 'User not authenticated');
-    }
-
-    const user = await UserModel.findById(authenticatedUserId)
+    const user = await UserModel.findById(req.session.userId)
       .select('+email')
       .exec();
     res.status(200).json(user);
+    console.log(user);
   } catch (error) {
     next(error);
   }
@@ -72,6 +67,7 @@ export const signUp: RequestHandler<
     req.session.userId = newUser._id;
 
     res.status(201).json(newUser);
+    console.log(newUser);
   } catch (error) {
     next(error);
   }
@@ -116,6 +112,7 @@ export const login: RequestHandler<
 
     req.session.userId = user._id;
     res.status(201).json(user);
+    console.log(user);
   } catch (error) {
     next(error);
   }
