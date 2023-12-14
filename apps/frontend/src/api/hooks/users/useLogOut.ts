@@ -16,7 +16,10 @@ export const useUserLogout = () => {
 
   return useMutation({
     mutationFn: userLogout,
-    onSuccess: () => queryClient.removeQueries({ queryKey: ['users'] }),
+    onSuccess: () => {
+      queryClient.resetQueries({ queryKey: ['users'] }),
+        queryClient.removeQueries({ queryKey: ['tasks'] });
+    },
     networkMode: 'offlineFirst',
   });
 };
