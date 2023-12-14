@@ -7,6 +7,7 @@ import { Form } from './Form/form';
 import { Seach } from './Search/search';
 import { TasksList } from './TasksList/tasksList';
 import { TaskButtons } from '../../components/Buttons/taskButtons';
+import { useGetAuthenticadedUser } from '../../api/hooks/users/useGetAuthenticadedUser';
 
 export const TasksPage = () => {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -16,23 +17,46 @@ export const TasksPage = () => {
     }
   }, []);
 
+  const { data: loggedUser } = useGetAuthenticadedUser();
+
   return (
     <Container>
       <Header title='Tasks list' />
-      <Section
-        title='Add new task'
-        body={<Form inputRef={inputRef} />}
-        extraHeaderContent={<ExampleTasksButton />}
-      />
-      <Section
-        title='Search'
-        body={<Seach />}
-      />
-      <Section
-        title='Tasks list'
-        body={<TasksList />}
-        extraHeaderContent={<TaskButtons />}
-      />
+      {loggedUser ? (
+        <>
+          <Section
+            title='Add new task'
+            body={<Form inputRef={inputRef} />}
+            extraHeaderContent={<ExampleTasksButton />}
+          />
+          <Section
+            title='Search'
+            body={<Seach />}
+          />
+          <Section
+            title='Tasks list'
+            body={<TasksList />}
+            extraHeaderContent={<TaskButtons />}
+          />
+        </>
+      ) : (
+        <>
+          <Section
+            title='Add new task'
+            body={<Form inputRef={inputRef} />}
+            extraHeaderContent={<ExampleTasksButton />}
+          />
+          <Section
+            title='Search'
+            body={<Seach />}
+          />
+          <Section
+            title='Tasks list'
+            body={<TasksList />}
+            extraHeaderContent={<TaskButtons />}
+          />
+        </>
+      )}
     </Container>
   );
 };
