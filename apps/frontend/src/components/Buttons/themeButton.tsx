@@ -5,8 +5,7 @@ import MoonIcon from './ThemeIcons/moon.svg?react';
 import SunIcon from './ThemeIcons/sun.svg?react';
 
 export const ThemeButton = () => {
-  const toggleTheme = useThemeStore((state) => state.toggleTheme);
-  const theme = useThemeStore((state) => state.theme);
+  const { theme, toggleTheme } = useThemeStore();
 
   useEffect(() => {
     applyThemePreference(theme);
