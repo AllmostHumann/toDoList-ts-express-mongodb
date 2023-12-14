@@ -4,8 +4,6 @@ const commonEndpoints = {
   tasks: '/tasks/',
   taskId: '/tasks/id/',
   getTaskContent: '/tasks/content/',
-  exampleTasksContent: '/tasks/exampleTasks/',
-  getExampleTasksByContent: '/tasks/exampleTasks/content/',
   getAuthenticadedUser: '/users',
   userSignup: '/users/signup',
   userLogin: '/users/login',
@@ -21,12 +19,6 @@ export const apiConfig = {
   },
   getTaskByContent: {
     endpoint: `${commonEndpoints.getTaskContent}`,
-  },
-  getExampleTasks: {
-    endpoint: `${commonEndpoints.exampleTasksContent}`,
-  },
-  getExampleTaskByContent: {
-    endpoint: `${commonEndpoints.getExampleTasksByContent}`,
   },
   postTask: {
     endpoint: `${commonEndpoints.tasks}`,
