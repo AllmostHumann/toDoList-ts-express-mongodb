@@ -57,7 +57,7 @@ export const LoginMenu = ({ setShowLoginModal }: LoginModalProps) => {
 
   return (
     <div className='h-full w-full leading-normal text-black dark:text-white grid place-items-center fixed backdrop-blur-sm !bg-transparent'>
-      <div className='rounded-lg my-0 mx-auto text-left p-[5px] max-w-md md:w-full w-fit leading-normal'>
+      <div className='rounded-lg my-0 mx-auto text-left p-[5px] max-w-md md:w-full w-fit leading-normal border-[2px] border-davysGray'>
         <div className='p-5 bg-white rounded-lg'>
           <div className='flex justify-between bg-white'>
             <h3 className='md:text-[25px] text-[20px]'>Log in</h3>
@@ -104,7 +104,7 @@ export const LoginMenu = ({ setShowLoginModal }: LoginModalProps) => {
               />
             </div>
             <FormButton className='border-none cursor-pointer p-[10px] w-[100%] hover:scale-[1.03] dark:bg-sherpaBlue bg-teal text-white'>
-              Sign up
+              Sign in
             </FormButton>
           </form>
         </div>

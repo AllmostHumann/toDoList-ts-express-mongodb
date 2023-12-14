@@ -21,7 +21,7 @@ export const Nav = ({ setShowSignupModal, setShowLoginModal }: ModalProps) => {
           className={({ isActive }) =>
             isActive
               ? 'text-white no-underline font-bold hover:border-b-[1px] border-solid'
-              : 'hover:border-b-[1px]'
+              : 'hover:border-b-[1px] text-white'
           }
           to={toTasks()}
         >
