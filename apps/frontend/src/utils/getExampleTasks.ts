@@ -1,11 +1,9 @@
 import axios from 'axios';
+import { Tasks } from '../api/types/task';
 
 export const getExampleTasks = async () => {
-  const response = await axios.get(
-    '/todolist-ts-express-mongodb/apps/frontend/exampleTasks.json',
+  const response = await axios.get<Tasks>(
+    '/todolist-ts-express-mongodb/apps/frontend/src/utils/exampleTasks.json',
   );
-  if (response.statusText !== 'OK') {
-    new Error(response.statusText);
-  }
   return response.data;
 };
