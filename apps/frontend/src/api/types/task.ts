@@ -1,7 +1,7 @@
 export interface Task {
   _id: string;
   content: string;
-  done?: boolean;
+  done: boolean;
   createdAt?: string;
   updatedAt?: string;
   __v?: number;
