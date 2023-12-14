@@ -1,4 +1,4 @@
-import { HashRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { Nav } from './components/Navigation/nav';
 import { toTask, toTasks, toAutor } from './routers';
@@ -9,8 +9,9 @@ import { Footer } from './components/Footer/footer';
 import { QueryClient } from '@tanstack/react-query';
 import { PersistQueryClientProvider } from '@tanstack/react-query-persist-client';
 import { createAsyncStoragePersister } from '@tanstack/query-async-storage-persister';
-import { LoginMenu } from './components/LoginMenu/loginMenu';
+import { SignupMenu } from './components/UserMenu/SignUpMenu';
 import { useState } from 'react';
+import { LoginMenu } from './components/UserMenu/LoginMenu';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -25,7 +26,8 @@ const asyncStoragePersister = createAsyncStoragePersister({
 });
 
 export default function App() {
-  const [showModal, setShowModal] = useState(false);
+  const [showSignupModal, setShowSignupModal] = useState(false);
+  const [showLoginModal, setShowLoginModal] = useState(false);
 
   return (
     <PersistQueryClientProvider
@@ -33,8 +35,14 @@ export default function App() {
       persistOptions={{ persister: asyncStoragePersister }}
     >
       <HashRouter>
-        <Nav setShowModal={setShowModal} />
-        {showModal && <LoginMenu setShowModal={setShowModal} />}
+        <Nav
+          setShowSignupModal={setShowSignupModal}
+          setShowLoginModal={setShowLoginModal}
+        />
+        {showSignupModal && (
+          <SignupMenu setShowSignupModal={setShowSignupModal} />
+        )}
+        {showLoginModal && <LoginMenu setShowLoginModal={setShowLoginModal} />}
         <Routes>
           <Route
             path={toTask()}
@@ -47,6 +55,15 @@ export default function App() {
           <Route
             path={toAutor()}
             element={<AuthorPage />}
+          />
+          <Route
+            path=''
+            element={
+              <Navigate
+                to={toTasks()}
+                replace
+              />
+            }
           />
         </Routes>
         <Footer />
