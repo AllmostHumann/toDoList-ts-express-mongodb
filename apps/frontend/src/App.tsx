@@ -1,17 +1,19 @@
-import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { Nav } from './components/Navigation/nav';
 import { toTask, toTasks, toAutor } from './routers';
 import { TaskPage } from './to-do-list/TaskPage/task';
 import { TasksPage } from './to-do-list/TasksPage/tasksPage';
 import { AuthorPage } from './to-do-list/AuthorPage/author';
 import { Footer } from './components/Footer/footer';
+import { LoginMenu } from './components/UserMenu/LoginMenu';
+import { SignupMenu } from './components/UserMenu/SignUpMenu';
+import CookieConsent from 'react-cookie-consent';
+import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { QueryClient } from '@tanstack/react-query';
 import { PersistQueryClientProvider } from '@tanstack/react-query-persist-client';
 import { createAsyncStoragePersister } from '@tanstack/query-async-storage-persister';
-import { SignupMenu } from './components/UserMenu/SignUpMenu';
+
 import { useState } from 'react';
-import { LoginMenu } from './components/UserMenu/LoginMenu';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -67,6 +69,9 @@ export default function App() {
           />
         </Routes>
         <Footer />
+        <CookieConsent enableDeclineButton>
+          This website uses cookies to enhance the user experience.
+        </CookieConsent>
       </HashRouter>
       <ReactQueryDevtools initialIsOpen={false} />
     </PersistQueryClientProvider>
