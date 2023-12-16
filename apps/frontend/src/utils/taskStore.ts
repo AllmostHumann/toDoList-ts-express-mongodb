@@ -14,6 +14,8 @@ interface TasksState {
   newUserPassword: string;
   loginUserName: string;
   loginUserPassword: string;
+  showSignupModal: boolean;
+  showLoginModal: boolean;
 }
 
 interface TasksStore extends TasksState {
@@ -38,6 +40,8 @@ interface TasksStore extends TasksState {
   toggleHideDoneTasks: () => void;
   areAllTasksDone: (tasks: Task[] | undefined) => boolean;
   areTasksListEmpty: (tasks: Task[] | undefined) => boolean;
+  setShowSignupModal: (showSignupModal: boolean) => void;
+  setShowLoginModal: (showLoginModal: boolean) => void;
 }
 
 const useTasksStore = create<TasksStore>()(
@@ -53,6 +57,10 @@ const useTasksStore = create<TasksStore>()(
       newUserPassword: '',
       loginUserName: '',
       loginUserPassword: '',
+      showSignupModal: false,
+      showLoginModal: false,
+      setShowSignupModal: (showSignupModal) => set({ showSignupModal }),
+      setShowLoginModal: (showLoginModal) => set({ showLoginModal }),
       addTask: (task) => set((state) => ({ tasks: [...state.tasks, task] })),
       setEdit: (edit) => set({ edit }),
       removeTask: (_id) =>

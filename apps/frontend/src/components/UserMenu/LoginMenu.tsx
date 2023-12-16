@@ -4,22 +4,23 @@ import { useUserLogin } from '../../api/hooks/users/useLogin';
 import { Input } from '../Input/input';
 import { useGetAuthenticadedUser } from '../../api/hooks/users/useGetAuthenticadedUser';
 import useTasksStore from '../../utils/taskStore';
-import { toTasks } from '../../routers';
 import { useNavigate } from 'react-router-dom';
+import { toTasks } from '../../routers';
 
-interface LoginModalProps {
-  setShowLoginModal: React.Dispatch<React.SetStateAction<boolean>>;
-}
+// interface LoginProps {
+//   setShowLoginModal: (showLoginModal: boolean) => void;
+// }
 
-export const LoginMenu = ({ setShowLoginModal }: LoginModalProps) => {
+export const LoginMenu = () => {
   const navigate = useNavigate();
-  const { mutate: userLogin } = useUserLogin();
+  const { mutate: userLogin, error: loginError } = useUserLogin();
   const { refetch: refetchUsers, data: loggedUser } = useGetAuthenticadedUser();
   const {
     loginUserName,
     setLoginUserName,
     loginUserPassword,
     setLoginUserPassword,
+    setShowLoginModal,
   } = useTasksStore();
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -28,6 +29,14 @@ export const LoginMenu = ({ setShowLoginModal }: LoginModalProps) => {
       inputRef.current.focus();
     }
   }, []);
+
+  useEffect(() => {
+    if (loginError && !loggedUser) {
+      setShowLoginModal(true);
+    } else if (!loginError && loggedUser) {
+      setShowLoginModal(false);
+    }
+  }, [loggedUser, loginError, setShowLoginModal]);
 
   const onFormSubmit = (event: React.FormEvent) => {
     event.preventDefault();
@@ -48,11 +57,8 @@ export const LoginMenu = ({ setShowLoginModal }: LoginModalProps) => {
     }
 
     navigate(toTasks());
-
     setLoginUserName('');
     setLoginUserPassword('');
-
-    setShowLoginModal(false);
   };
 
   return (
@@ -72,12 +78,17 @@ export const LoginMenu = ({ setShowLoginModal }: LoginModalProps) => {
             className='mb-[10px] p-[10px] text-alto font-medium bg-white dark:bg-jet'
             onSubmit={onFormSubmit}
           >
+            {loginError && (
+              <div className='!bg-red-300 w-full h-[40px] grid place-items-center justify-start pl-2 font-medium text-red-900 rounded-lg'>
+                <p className='m-1'>Invalid credentials!</p>
+              </div>
+            )}
             <div className='py-[10px] flex flex-col rounded-lg bg-white'>
               <label className='text-lg text-black dark:text-white'>
                 Username
               </label>
               <Input
-                className='border-solid border-[1px] p-[5px] border-silverChalice w-[100%] text-black'
+                className='border-solid border-[1px] p-[5px] border-silverChalice w-full text-black'
                 placeholder='Username'
                 ref={inputRef}
                 required={true}
@@ -93,7 +104,7 @@ export const LoginMenu = ({ setShowLoginModal }: LoginModalProps) => {
                 Password
               </label>
               <Input
-                className='border-solid border-[1px] p-[5px] border-silverChalice w-[100%] text-black'
+                className='border-solid border-[1px] p-[5px] border-silverChalice w-full text-black'
                 placeholder='**********'
                 required={true}
                 type='current-password'
@@ -103,7 +114,7 @@ export const LoginMenu = ({ setShowLoginModal }: LoginModalProps) => {
                 }
               />
             </div>
-            <FormButton className='border-none cursor-pointer p-[10px] w-[100%] hover:scale-[1.03] dark:bg-sherpaBlue bg-teal text-white'>
+            <FormButton className='border-none cursor-pointer p-[10px] w-full hover:scale-[1.03] dark:bg-sherpaBlue bg-teal text-white'>
               Sign in
             </FormButton>
           </form>

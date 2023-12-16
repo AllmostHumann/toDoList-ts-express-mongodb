@@ -3,16 +3,13 @@ import { toTasks } from '../../routers';
 import { ThemeButton } from '../Buttons/themeButton';
 import { useGetAuthenticadedUser } from '../../api/hooks/users/useGetAuthenticadedUser';
 import { useUserLogout } from '../../api/hooks/users/useLogOut';
+import useTasksStore from '../../utils/taskStore';
 
-interface ModalProps {
-  setShowSignupModal: React.Dispatch<React.SetStateAction<boolean>>;
-  setShowLoginModal: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-export const Nav = ({ setShowSignupModal, setShowLoginModal }: ModalProps) => {
+export const Nav = () => {
   const navigate = useNavigate();
   const { data: loggedUser } = useGetAuthenticadedUser();
   const { mutate: logout } = useUserLogout();
+  const { setShowLoginModal, setShowSignupModal } = useTasksStore();
 
   return (
     <nav className='bg-teal dark:bg-sherpaBlue m-0 p-0 flex justify-start items-center list-none md:justify-center'>

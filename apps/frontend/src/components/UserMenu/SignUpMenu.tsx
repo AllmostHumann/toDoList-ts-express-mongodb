@@ -3,13 +3,14 @@ import { useUserSignup } from '../../api/hooks/users/useSignUp';
 import { FormButton } from '../Buttons/formButton';
 import { Input } from '../Input/input';
 import useTasksStore from '../../utils/taskStore';
+import { useNavigate } from 'react-router-dom';
+import { toTasks } from '../../routers';
+import { useGetAuthenticadedUser } from '../../api/hooks/users/useGetAuthenticadedUser';
 
-interface SignupModalProps {
-  setShowSignupModal: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-export const SignupMenu = ({ setShowSignupModal }: SignupModalProps) => {
-  const { mutate: userSignup } = useUserSignup();
+export const SignupMenu = () => {
+  const navigate = useNavigate();
+  const { mutate: userSignup, error: signupError } = useUserSignup();
+  const { refetch: refetchUsers, data: loggedUser } = useGetAuthenticadedUser();
   const {
     newUserName,
     setNewUsername,
@@ -17,6 +18,7 @@ export const SignupMenu = ({ setShowSignupModal }: SignupModalProps) => {
     setNewUserEmail,
     newUserPassword,
     setNewUserPassword,
+    setShowSignupModal,
   } = useTasksStore();
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -25,6 +27,14 @@ export const SignupMenu = ({ setShowSignupModal }: SignupModalProps) => {
       inputRef.current.focus();
     }
   }, []);
+
+  useEffect(() => {
+    if (signupError && !loggedUser) {
+      setShowSignupModal(true);
+    } else if (!signupError && loggedUser) {
+      setShowSignupModal(false);
+    }
+  }, [loggedUser, signupError, setShowSignupModal]);
 
   const onFormSubmit = (event: React.FormEvent) => {
     event.preventDefault();
@@ -42,10 +52,14 @@ export const SignupMenu = ({ setShowSignupModal }: SignupModalProps) => {
       password: trimmUserPassword,
     });
 
+    if (loggedUser) {
+      refetchUsers();
+    }
+
+    navigate(toTasks());
     setNewUsername('');
     setNewUserEmail('');
     setNewUserPassword('');
-    setShowSignupModal(false);
   };
 
   return (
@@ -65,6 +79,14 @@ export const SignupMenu = ({ setShowSignupModal }: SignupModalProps) => {
             className='mb-[10px] p-[10px] text-alto font-medium bg-white dark:bg-jet'
             onSubmit={onFormSubmit}
           >
+            {signupError && (
+              <div className='!bg-red-300 w-full h-fit grid place-items-center justify-start pl-2 font-medium text-red-900 rounded-lg'>
+                <p className='m-1'>
+                  Username already taken.
+                  <br /> Please choose a different one or log in instead.
+                </p>
+              </div>
+            )}
             <div className='py-[10px] flex flex-col rounded-lg bg-white'>
               <label className='text-lg text-black dark:text-white'>
                 Username
