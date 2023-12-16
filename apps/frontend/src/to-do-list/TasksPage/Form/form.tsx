@@ -13,7 +13,7 @@ interface FormProps {
 
 export const Form: React.FC<FormProps> = ({ inputRef }) => {
   const { data: loggedUser } = useGetAuthenticadedUser();
-  const { mutate: postTask } = usePostTask();
+  const { mutate: postTask, error: postTaskError } = usePostTask();
   const { newTaskContent, setNewTaskContent, addTask } = useTasksStore();
 
   const onFormSubmit = (event: React.FormEvent) => {
@@ -41,31 +41,41 @@ export const Form: React.FC<FormProps> = ({ inputRef }) => {
 
   return (
     <FormComponent onSubmit={onFormSubmit}>
-      {loggedUser && (
-        <Input
-          className='border-solid border-[1px] p-[5px] border-silverChalice w-[100%]'
-          ref={inputRef}
-          value={newTaskContent}
-          placeholder='What have to be done?'
-          onChange={({ target }: React.ChangeEvent<HTMLInputElement>) =>
-            setNewTaskContent(target.value)
-          }
-        />
+      {postTaskError ? (
+        <div className='!bg-red-300 w-full h-[40px] grid place-items-center justify-start pl-2 font-medium text-red-900 rounded-lg'>
+          <p className='m-1'>
+            Ops! Something went wrong, please refresh page and try again.
+          </p>
+        </div>
+      ) : (
+        <>
+          {loggedUser && (
+            <Input
+              className='border-solid border-[1px] p-[5px] border-silverChalice w-[100%]'
+              ref={inputRef}
+              value={newTaskContent}
+              placeholder='What have to be done?'
+              onChange={({ target }: React.ChangeEvent<HTMLInputElement>) =>
+                setNewTaskContent(target.value)
+              }
+            />
+          )}
+          {!loggedUser && (
+            <Input
+              className='border-solid border-[1px] p-[5px] border-silverChalice w-[100%]'
+              ref={inputRef}
+              value={newTaskContent}
+              placeholder='What have to be done?'
+              onChange={({ target }: React.ChangeEvent<HTMLInputElement>) =>
+                setNewTaskContent(target.value)
+              }
+            />
+          )}
+          <FormButton className='border-none cursor-pointer p-[10px] w-[100%] md:hover:scale-[1.15] hover:scale-[1.03] dark:bg-sherpaBlue bg-teal text-white'>
+            Add task
+          </FormButton>
+        </>
       )}
-      {!loggedUser && (
-        <Input
-          className='border-solid border-[1px] p-[5px] border-silverChalice w-[100%]'
-          ref={inputRef}
-          value={newTaskContent}
-          placeholder='What have to be done?'
-          onChange={({ target }: React.ChangeEvent<HTMLInputElement>) =>
-            setNewTaskContent(target.value)
-          }
-        />
-      )}
-      <FormButton className='border-none cursor-pointer p-[10px] w-[100%] md:hover:scale-[1.15] hover:scale-[1.03] dark:bg-sherpaBlue bg-teal text-white'>
-        Add task
-      </FormButton>
     </FormComponent>
   );
 };

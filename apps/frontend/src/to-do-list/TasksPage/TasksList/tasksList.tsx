@@ -19,9 +19,11 @@ export const TasksList = () => {
   const query = new URLSearchParams(location.search).get(searchQueryParamName);
   const { data: tasks } = useGetTasks(query);
   const { data: loggedUser } = useGetAuthenticadedUser();
-  const { mutate: deleteTask } = useDeleteTask();
-  const { mutate: markTaskAsDone } = useMarkTaskAsDone();
-  const { mutate: markTaskAsUndone } = useMarkTaskAsUndone();
+  const { mutate: deleteTask, error: deleteTaskError } = useDeleteTask();
+  const { mutate: markTaskAsDone, error: markTaskAsDoneError } =
+    useMarkTaskAsDone();
+  const { mutate: markTaskAsUndone, error: markTaskAsUndoneError } =
+    useMarkTaskAsUndone();
   const {
     removeTask,
     setTaskDone,
@@ -59,11 +61,22 @@ export const TasksList = () => {
                   {exampleTask.done ? 'X' : '✔'}
                 </p>
               </DoneButton>
-              <Content done={exampleTask.done}>
-                <NavLink to={toTask({ _id: exampleTask._id })}>
-                  {exampleTask.content}
-                </NavLink>
-              </Content>
+              {markTaskAsDoneError ||
+              markTaskAsUndoneError ||
+              deleteTaskError ? (
+                <div className='!bg-red-300 w-full h-[40px] grid place-items-center justify-start pl-2 font-medium text-red-900 rounded-lg'>
+                  <p className='m-1'>
+                    Ops! Something went wrong, please refresh page and try
+                    again.
+                  </p>
+                </div>
+              ) : (
+                <Content done={exampleTask.done}>
+                  <NavLink to={toTask({ _id: exampleTask._id })}>
+                    {exampleTask.content}
+                  </NavLink>
+                </Content>
+              )}
               <DeleteButton onClick={() => removeTask(exampleTask._id)}>
                 <DeleteIcon className='m-[3px] w-fit h-fit' />
               </DeleteButton>
@@ -101,9 +114,22 @@ export const TasksList = () => {
                   {task.done ? 'X' : '✔'}
                 </p>
               </DoneButton>
-              <Content done={task.done}>
-                <NavLink to={toTask({ _id: task._id })}>{task.content}</NavLink>
-              </Content>
+              {markTaskAsDoneError ||
+              markTaskAsUndoneError ||
+              deleteTaskError ? (
+                <div className='!bg-red-300 w-full h-[40px] grid place-items-center justify-start pl-2 font-medium text-red-900 rounded-lg'>
+                  <p className='m-1'>
+                    Ops! Something went wrong, please refresh page and try
+                    again.
+                  </p>
+                </div>
+              ) : (
+                <Content done={task.done}>
+                  <NavLink to={toTask({ _id: task._id })}>
+                    {task.content}
+                  </NavLink>
+                </Content>
+              )}
               <DeleteButton onClick={() => deleteTask(task._id)}>
                 <DeleteIcon className='m-[3px] w-fit h-fit' />
               </DeleteButton>
