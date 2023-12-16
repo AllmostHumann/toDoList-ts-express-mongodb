@@ -12,8 +12,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { QueryClient } from '@tanstack/react-query';
 import { PersistQueryClientProvider } from '@tanstack/react-query-persist-client';
 import { createAsyncStoragePersister } from '@tanstack/query-async-storage-persister';
-
-import { useState } from 'react';
+import useTasksStore from './utils/taskStore';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -28,8 +27,7 @@ const asyncStoragePersister = createAsyncStoragePersister({
 });
 
 export default function App() {
-  const [showSignupModal, setShowSignupModal] = useState(false);
-  const [showLoginModal, setShowLoginModal] = useState(false);
+  const { showLoginModal, showSignupModal } = useTasksStore();
 
   return (
     <PersistQueryClientProvider
@@ -37,14 +35,9 @@ export default function App() {
       persistOptions={{ persister: asyncStoragePersister }}
     >
       <HashRouter>
-        <Nav
-          setShowSignupModal={setShowSignupModal}
-          setShowLoginModal={setShowLoginModal}
-        />
-        {showSignupModal && (
-          <SignupMenu setShowSignupModal={setShowSignupModal} />
-        )}
-        {showLoginModal && <LoginMenu setShowLoginModal={setShowLoginModal} />}
+        <Nav />
+        {showSignupModal && <SignupMenu />}
+        {showLoginModal && <LoginMenu />}
         <Routes>
           <Route
             path={toTask()}
