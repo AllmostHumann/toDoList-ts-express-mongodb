@@ -6,5 +6,5 @@ import svgr from 'vite-plugin-svgr';
 export default defineConfig({
   plugins: [react(), svgr({ include: '**/*.svg?react' })],
   // base: '/todolist-ts-express-mongodb/apps/frontend/',
-  base: '/todolist-ts-express-mongodb/apps/frontend/',
+  base: './',
 });
