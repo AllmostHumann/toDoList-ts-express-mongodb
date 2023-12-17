@@ -15,7 +15,7 @@ const app = express();
 app.use(
   cors({
     origin: [
-      'http://localhost:5173',
+      // 'http://localhost:5173',
       'https://todolist-ts-mern-backend.vercel.app/',
     ],
     credentials: true,
