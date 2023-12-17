@@ -1,5 +1,4 @@
-export const apiBaseUrl =
-  'https://todolist-ts-mern-backend-allmosthumann.vercel.app/api';
+export const apiBaseUrl = 'https://todolist-ts-mern-backend.vercel.app/api';
 
 const commonEndpoints = {
   tasks: '/tasks/',

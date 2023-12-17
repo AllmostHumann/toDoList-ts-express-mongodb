@@ -16,7 +16,7 @@ app.use(
   cors({
     origin: [
       'http://localhost:5173',
-      'https://todolist-ts-mern-backend-allmosthumann.vercel.app/api',
+      'https://todolist-ts-mern-backend.vercel.app/api',
     ],
     credentials: true,
   }),
