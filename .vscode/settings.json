@@ -1,0 +1,99 @@
+{
+  "liveServer.settings.donotShowInfoMsg": true,
+  "workbench.startupEditor": "none",
+  "git.autofetch": true,
+  "git.confirmSync": false,
+  "git.enableSmartCommit": true,
+  "git.ignoreRebaseWarning": true,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "workbench.iconTheme": "material-icon-theme",
+  "editor.tabSize": 2,
+  "editor.codeActionsOnSave": {},
+  "diffEditor.ignoreTrimWhitespace": false,
+  "totalTypeScript.hideAllTips": false,
+  "totalTypeScript.hideBasicTips": false,
+  "totalTypeScript.hiddenTips": [
+    "typing-function-parameters",
+    "ts-object-type",
+    "variable-type-annotation",
+    "array-type",
+    "basic-types",
+    "interface-declaration",
+    "optional-object-property",
+    "union-type",
+    "null-keyword",
+    "function-return-type",
+    "passing-generics-to-types",
+    "undefined-keyword",
+    "type-alias-declaration",
+    "any-type",
+    "non-null-expression",
+    "omit-utility-type",
+    "literal-type",
+    "typeof",
+    "record-utility-type"
+  ],
+  "tailwind-fold.autoFold": false,
+  "css.lint.unknownAtRules": "ignore",
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "oneDarkPro.editorTheme": "One Dark Pro Darker",
+  "oneDarkPro.italic": false,
+  "prettier.endOfLine": "auto",
+  "prettier.singleAttributePerLine": true,
+  "editor.wordWrap": "on",
+  "diffEditor.wordWrap": "on",
+  "indentRainbow.lightIndicatorStyleLineWidth": 5,
+  "editor.bracketPairColorization.enabled": true,
+  "terminal.integrated.env.windows": {},
+  "console-ninja.toolsToEnableSupportAutomaticallyFor": {
+    "live-server-extension": true,
+    "live-preview-extension": true
+  },
+  "githubPullRequests.createOnPublishBranch": "never",
+  "terminal.integrated.defaultProfile.windows": "Git Bash",
+  "console-ninja.featureSet": "Community",
+  "workbench.colorTheme": "One Dark Pro Darker",
+  "editor.formatOnSave": true,
+  "prettier.configPath": ".prettierrc",
+  "eslint.timeBudget.onValidation": {
+    "warn": 4000,
+    "error": 8000
+  },
+  "prettier.useEditorConfig": false,
+  "prettier.requireConfig": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[source.css.styled]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[properties]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[tailwindcss]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "files.associations": {
+    "*.xml": "html",
+    "*.svg": "html"
+  }
+}

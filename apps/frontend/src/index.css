@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#root {
+  @apply min-h-screen flex flex-col;
+}
+
+@layer base {
+  body {
+    @apply bg-alto font-montserrat dark:bg-jet;
+  }
+
+  h1,
+  h2 {
+    @apply text-[32px] font-bold dark:text-platinum;
+  }
+  main,
+  div {
+    @apply bg-alto;
+    @apply dark:bg-jet;
+  }
+  header,
+  form,
+  ul {
+    @apply bg-white dark:bg-davysGray rounded-[5px];
+  }
+  p {
+    @apply my-[16px] mx-auto;
+  }
+  input {
+    @apply dark:bg-gray-400 dark:placeholder:text-black font-semibold rounded-[5px];
+  }
+  button {
+    @apply rounded-[5px] text-teal dark:text-platinum bg-white
+    dark:bg-davysGray dark:placeholder:text-black font-semibold md:hover:scale-[1.15] hover:scale-[1.03] duration-300;
+  }
+  a {
+    @apply dark:text-platinum font-semibold decoration-black decoration-[2px];
+  }
+}
