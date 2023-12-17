@@ -16,7 +16,7 @@ app.use(
   cors({
     origin: [
       'https://localhost:5173',
-      'https://todolist-ts-mern-backend.onrender.com/api',
+      'https://todolist-ts-mern-frontend.onrender.com',
     ],
     credentials: true,
   }),
