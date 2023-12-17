@@ -3,7 +3,6 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "homepage": "https://github.com/AllmostHumann/todolist-ts-express-mongodb",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
