@@ -1,4 +1,4 @@
-import app from './app.js';
+import app from './index.js';
 import env from './util/validateEnv.js';
 import mongoose from 'mongoose';
 
