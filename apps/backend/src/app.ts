@@ -17,6 +17,7 @@ app.use(
     origin: [
       'https://localhost:5173',
       'https://todolist-ts-mern-backend.vercel.app/api',
+      'https://todolist-ts-mern-backend.onrender.com/',
     ],
     credentials: true,
   }),
