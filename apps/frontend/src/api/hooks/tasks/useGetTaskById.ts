@@ -2,7 +2,6 @@ import { axiosInstance } from '../../utilities/axiosInstance';
 import { apiConfig } from '../../config/apiRoutes';
 import { useQuery } from '@tanstack/react-query';
 import { Task } from '../../types/task';
-import { useGetAuthenticadedUser } from '../users/useGetAuthenticadedUser';
 
 const getTaskById = async (_id?: string) => {
   const response = await axiosInstance.get<Task>(
@@ -12,12 +11,10 @@ const getTaskById = async (_id?: string) => {
 };
 
 export const useGetTaskById = (_id?: string) => {
-  const { data } = useGetAuthenticadedUser();
-
   return useQuery({
     queryKey: ['taskById', _id],
     queryFn: () => getTaskById(_id),
     networkMode: 'offlineFirst',
-    enabled: !!data,
+    enabled: _id === undefined ? false : true,
   });
 };
