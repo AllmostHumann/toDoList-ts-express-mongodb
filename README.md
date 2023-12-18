@@ -1,16 +1,39 @@
 # Jakub Głuch - To do list in React.js + Vite
 
-![To do list](public/gif/Animation.gif)
+![To do list](/apps/frontend/public/gif/Animation.gif)
 
-## [Demo](https://allmosthumann.github.io/todolist-ts-express-mongodb/)
+## [Demo](https://todolist-ts-mern-frontend.onrender.com/)
 
 ## Introduction
 
-In order to learn something new, I decided to rewrite my task list application to a TypeScript version. I used Vite as the builder. For styling, I used TailwindCSS. The main idea in this application was to add a server written in Express.js, and to use a MongoDB database, and to learn the Zustand library as a replacement for Redux. In addition, I made some changes to the look of the application, including adding the functionality to change the theme.
+In order to learn something new, I decided to rewrite my task list application to a TypeScript version. I used Vite as the builder for frontend part. For styling, I used TailwindCSS. The main idea in this application was to add a backend written in Express.js, use a MongoDB as database provider, and learn the Zustand library as a replacement for Redux. In addition, I made some changes to the look of the application, including adding the functionality to change the theme. In the app you can create your own account or log in to an existing test account:
 
-Learning Zustand, Express.js, and MongoDB will allow me to start writing a blockchain video playback application (Mirrorboards LFG!) in the near future.
+- Username: test
+- Password: test123
+
+In this version, I added the ability to edit the content of the task. We can do this by clicking on the task content. A new window dedicated to the specific task will open. There you can change the content and status of the task. 
 
 Beyond that, it is still a simple task list application 😆.
+
+## Running locally
+
+If you want to have some fun locally, please pass few steps as below:
+
+This repo use turbopack 
+
+1. Download/clone git repository
+2. In root folder pass ```pnpm install```
+3. In `apps/backend` folder create ```.env``` file and create your own like below:
+```
+MONGO_CONNECTION_STRING=mongodb+srv://<username>:<password>@beyondthebasics.abcde.mongodb.net/test
+PORT=5000
+SESSION_SECRET=<your secret key>
+
+```
+4. In backend folder edit app.ts and add new origin for your localhost.
+5. In `/frontend/src/api/config/apiRoutes.ts` edit `apiBaseUrl` for your localhost
+
+That's it! If everything went well you shoudl be able to run whole app by typing `pnpm run dev` in main root folder. If you want to run backend or frontend separately just run `pnpm run dev` command in "frontend" or "backend" folder. 
 
 Cheers!
 
@@ -24,12 +47,13 @@ Simple MERN To do list in React.js with TypeScript, with mobile devices responsi
 - Vite
 - TypeScript
 - Zustand
-- TBA TanStack Query 5
+- TanStack Query 5
 - TailwindCSS
 - React-router
 - Axios
-- TBA Express.js
-- TBA MongoDB
+- Express.js + express-sessions
+- MongoDB + mongoose
+- cors, dotenv, envalid, bcrypt, http-errors, morgan
 
 # React + TypeScript + Vite
 
