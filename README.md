@@ -1,4 +1,4 @@
-# Jakub Głuch - To do list in React.js + Vite
+# MERN Todo list with TypeScript
 
 ![To do list](/apps/frontend/public/gif/Animation.gif)
 
