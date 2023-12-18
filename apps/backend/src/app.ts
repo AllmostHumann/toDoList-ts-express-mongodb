@@ -12,6 +12,7 @@ import { requiresAuth } from './middleware/auth.js';
 
 const app = express();
 
+app.set("trust proxy", 1);
 app.use(
   cors({
     origin: [
@@ -19,6 +20,7 @@ app.use(
       'https://todolist-ts-mern-frontend.onrender.com',
     ],
     credentials: true,
+    exposedHeaders: ['Set-Cookie']
   }),
 );
 
