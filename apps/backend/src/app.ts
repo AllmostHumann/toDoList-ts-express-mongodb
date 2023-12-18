@@ -19,7 +19,6 @@ app.use(
       'https://todolist-ts-mern-frontend.onrender.com',
     ],
     credentials: true,
-    exposedHeaders: ['Set-Cookie']
   }),
 );
 
