@@ -62,7 +62,7 @@ export default function App() {
           />
         </Routes>
         <Footer />
-        <CookieConsent enableDeclineButton>
+        <CookieConsent enableDeclineButton containerClasses='!bg-black' contentClasses='!bg-black' buttonWrapperClasses='!bg-black'>
           This website uses cookies to enhance the user experience.
         </CookieConsent>
       </HashRouter>
