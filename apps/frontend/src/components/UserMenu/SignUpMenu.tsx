@@ -125,7 +125,7 @@ export const SignupMenu = () => {
               <input
                 className='border-solid border-[1px] p-[5px] border-silverChalice w-[100%] text-black'
                 placeholder='**********'
-                type='current-password'
+                type='password'
                 value={newUserPassword}
                 onChange={({ target }: React.ChangeEvent<HTMLInputElement>) =>
                   setNewUserPassword(target.value)

@@ -107,7 +107,7 @@ export const LoginMenu = () => {
                 className='border-solid border-[1px] p-[5px] border-silverChalice w-full text-black'
                 placeholder='**********'
                 required={true}
-                type='current-password'
+                type='password'
                 value={loginUserPassword}
                 onChange={({ target }: React.ChangeEvent<HTMLInputElement>) =>
                   setLoginUserPassword(target.value)
