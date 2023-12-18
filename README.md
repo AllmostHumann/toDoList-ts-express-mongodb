@@ -1,6 +1,6 @@
 # MERN Todo list with TypeScript
 
-![To do list](/apps/frontend/public/gif/Animation.gif)
+![To do list](/apps/frontend/public/gif/tasks.gif)
 
 ## [Demo](https://todolist-ts-mern-frontend.onrender.com/)
 
@@ -11,7 +11,15 @@ In order to learn something new, I decided to rewrite my task list application t
 - Username: test
 - Password: test123
 
-In this version, I added the ability to edit the content of the task. We can do this by clicking on the task content. A new window dedicated to the specific task will open. There you can change the content and status of the task. 
+**Ps: You have to wait 1-2 mins after app load, the server is hosted at render.com for free and it takes some time to start running :D**
+
+In this version, I added the ability to edit the content of the task. We can do this by clicking on the task content. A new window dedicated to the specific task will open. There you can change the content and status of the task.
+
+## Zustand & example tasks
+
+![Example to do list](/apps/frontend/public/gif/exampleTasks.gif)
+
+If you want to test the app without signing in, you can click "Get example tasks" button and get tasks from zustan store. Everything is stored in localstorage.
 
 Beyond that, it is still a simple task list application 😆.
 
@@ -19,21 +27,23 @@ Beyond that, it is still a simple task list application 😆.
 
 If you want to have some fun locally, please pass few steps as below:
 
-This repo use turbopack 
+This repo use turbopack
 
 1. Download/clone git repository
-2. In root folder pass ```pnpm install```
-3. In `apps/backend` folder create ```.env``` file and create your own like below:
+2. In root folder pass `pnpm install`
+3. In `apps/backend` folder create `.env` file and create your own like below:
+
 ```
 MONGO_CONNECTION_STRING=mongodb+srv://<username>:<password>@beyondthebasics.abcde.mongodb.net/test
 PORT=5000
 SESSION_SECRET=<your secret key>
 
 ```
+
 4. In backend folder edit app.ts and add new origin for your localhost.
 5. In `/frontend/src/api/config/apiRoutes.ts` edit `apiBaseUrl` for your localhost
 
-That's it! If everything went well you shoudl be able to run whole app by typing `pnpm run dev` in main root folder. If you want to run backend or frontend separately just run `pnpm run dev` command in "frontend" or "backend" folder. 
+That's it! If everything went well you shoudl be able to run whole app by typing `pnpm run dev` in main root folder. If you want to run backend or frontend separately just run `pnpm run dev` command in "frontend" or "backend" folder.
 
 Cheers!
 
