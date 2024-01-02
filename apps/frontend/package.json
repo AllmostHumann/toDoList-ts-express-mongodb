@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "homepage": "https://vercel.com/allmosthumann/todolist-ts-mern-frontend",
+  "homepage": "https://todolist-ts-mern-frontend.onrender.com",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
